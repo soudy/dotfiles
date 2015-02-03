@@ -1,39 +1,39 @@
 --[[
 
-     Earth Awesome WM config 2.0
+     Cold Awesome WM config 2.0
      github.com/copycat-killer
 
 --]]
 
 theme                               = {}
 
-themes_dir                          = os.getenv("HOME") .. "/.config/awesome/themes/earth"
-theme.wallpaper                     = themes_dir .. "/field.jpg"
+themes_dir                          = os.getenv("HOME") .. "/.config/awesome/themes/cold"
+theme.wallpaper                     = themes_dir .. "/flow.jpg"
 
-theme.font                          = "berry 9"
-theme.fg_normal                     = "#CCC2A5"
-theme.fg_focus                      = "#CCC2A5"
-theme.fg_urgent                     = "#7A6657"
-theme.bg_normal                     = "#2E2B29"
-theme.bg_focus                      = "#7A6657"
-theme.bg_urgent                     = "#7A6657"
+theme.font                          = "Sans 8"
+theme.fg_normal                     = "#cdcdcd"
+theme.fg_focus                      = "#cdcdcd"
+theme.fg_urgent                     = "#cdcdcd"
+theme.bg_normal                     = "#242424"
+theme.bg_focus                      = "#6B6475"
+theme.bg_urgent                     = "#6B6475"
 --[[ theme.bg_urgent                     = "#B88#A7D" ]]
 theme.border_width                  = "1"
 --[[ theme.border_normal                 = "#a7bedd" ]]
 --[[ theme.border_normal                 = "#474E4F" ]]
-theme.border_normal                 = "#332f2d"
+theme.border_normal                 = "#242424"
 --[[ theme.border_normal                 = "#8F809C" ]]
 --[[ theme.border_normal                 = "#A99CB5" ]]
---[[ theme.border_focus                  = "#7A6657" ]]
---[[ theme.border_focus                  = "#7A6657" ]]
+--[[ theme.border_focus                  = "#6B6475" ]]
+--[[ theme.border_focus                  = "#6B6475" ]]
 --[[ theme.border_focus                  = "#A9F98B7" ]]
-theme.border_focus                  = "#7A6657"
-theme.border_marked                 = "#7A6657"
-theme.titlebar_bg_focus             = "#FFFFFF"
-theme.titlebar_bg_normal            = "#FFFFFF"
-theme.taglist_fg_focus              = "#CCC2A5"
-theme.tasklist_bg_focus             = "#7A6657"
-theme.tasklist_fg_focus             = "#CCC2A5"
+theme.border_focus                  = "#6B6475"
+theme.border_marked                 = "#6B6475"
+theme.titlebar_bg_focus             = "#6B6475"
+theme.titlebar_bg_normal            = "#cdcdcd"
+theme.taglist_fg_focus              = "#cdcdcd"
+theme.tasklist_bg_focus             = "#242424"
+theme.tasklist_fg_focus             = "#cdcdcd"
 theme.notify_fg                     = theme.fg_normal
 theme.notify_bg                     = theme.bg_normal
 theme.notify_border                 = theme.border_focus
@@ -83,7 +83,7 @@ theme.tasklist_floating             = ""
 theme.tasklist_maximized_horizontal = ""
 theme.tasklist_maximized_vertical   = ""
 
-theme.useless_gap_width             = 18
+theme.useless_gap_width             = 10
 theme.layout_uselesstile            = themes_dir .. "/icons/tile.png"
 theme.layout_uselesstileleft        = themes_dir .. "/icons/tileleft.png"
 theme.layout_uselesstileright       = themes_dir .. "/icons/tilegaps.png"

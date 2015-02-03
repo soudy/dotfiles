@@ -6,6 +6,7 @@ set hidden
 set smarttab
 set showmatch
 set ruler
+set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 set smartindent
 set tabstop=4
 set shiftwidth=4
@@ -91,7 +92,7 @@ set termencoding=utf-8
 
 " searching
 set incsearch
-set nohlsearch
+set hlsearch
 set smartcase
 set ignorecase
 
@@ -197,6 +198,11 @@ nnoremap n nzz
 " swap : with ;
 nnoremap ; :
 nnoremap : ;
+
+" surrounds
+map <Leader>s ysiw
+
+nnoremap <CR> :noh<CR>
 
 " write to read only file
 cnoremap w!! w !sudo tee % >/dev/null

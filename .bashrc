@@ -12,7 +12,7 @@ fi
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 # start with tmux
-[[ -z $TMUX  ]] && exec tmux
+# [[ -z $TMUX  ]] && exec tmux
 
 # Aliases
 alias srecord="ffmpeg -f dshow -i -c:v libvpx -b:v 2M -deadline realtime -cpu-used -5 -threads %threads% -c:a libvorbis -y output.webm"
@@ -40,12 +40,13 @@ alias df='df -H'
 alias merrychristmas='curl climagic\.org/txt/jb.txt|while read -r c n l;do printf "\e[1;${c}m%${COLUMNS}s\e[0m\n" " ";play -q -n synth pl $n trim 0 $l;done '
 alias snow="xsnow -notrees -nosanta -norudolf -snowflakes 1000 -nokeepsnow"
 alias vi="vim"
+alias sudo="sudo "
 
 #enable and disable http firewall
 alias httpe='sudo firewall-cmd --add-service=http'
 alias httpr='sudo firewall-cmd --remove-service=http'
 
-export PS1="\[\e[00;31m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;32m\]\h\[\e[0m\]\[\e[00;37m\] [\[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\]] \[\e[0m\]"
+export PS1="\[\e[00;36m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;35m\]\h\[\e[0m\]\[\e[00;37m\] [\[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\]] \[\e[0m\]"
 
 
 # append to the history file, don't overwrite it

@@ -81,7 +81,7 @@ os.execute("xset r rate 220 65")
 os.setlocale(os.getenv("LANG"))
 
 -- beautiful init
-beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/earth/theme.lua")
+beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/cold/theme.lua")
 
 -- common
 modkey     = "Mod4"
@@ -180,10 +180,10 @@ mpdwidget = lain.widgets.mpd({
             mpdicon:set_image(beautiful.widget_music)
         end
 
-        widget:set_markup(markup("#8A5B5B", artist) .. title)
+        widget:set_markup(markup("#6B6475", artist) .. title)
     end
 })
-mpdwidgetbg = wibox.widget.background(mpdwidget, "#2E2B29")
+mpdwidgetbg = wibox.widget.background(mpdwidget, "#242424")
 
 -- MEM
 memicon = wibox.widget.imagebox(beautiful.widget_mem)
@@ -447,7 +447,9 @@ globalkeys = awful.util.table.join(
     --awful.key({ modkey }, "Right",  awful.tag.viewnext       ),
 
     -- Lock
-    awful.key({ modkey }, "l", function () awful.util.spawn("xscreensaver-command --lock") end),
+    --[[
+       [ awful.key({ modkey }, "l", function () awful.util.spawn("xscreensaver-command --lock") end),
+       ]]
 
     -- File manager
     awful.key({ modkey, }, "e", function() awful.util.spawn("thunar") end),
@@ -542,7 +544,7 @@ globalkeys = awful.util.table.join(
                 client.focus:raise()
             end
     end),
-    awful.key({ altkey, "Shift"   }, "l",      function () awful.tag.incmwfact( 0.05)     end),
+    awful.key({ altkey, "Shift"   }, "l",      function () awful.tag.incmwfact(0.05)     end),
     awful.key({ altkey, "Shift"   }, "h",      function () awful.tag.incmwfact(-0.05)     end),
     awful.key({ altkey, "Shift"   }, "k",      function () awful.client.incwfact( 0.1)   end),
     awful.key({ altkey, "Shift"   }, "j",      function () awful.client.incwfact(-0.1)   end),
@@ -643,13 +645,16 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "g", function () awful.util.spawn(graphics) end),
 
     -- Imgur shit
-    awful.key({ "Control", "Shift" }, "4", function () awful.util.spawn("imgur") end),
+    --[[
+       [ awful.key({ "Control", "Shift" }, "4", function () awful.util.spawn("imgur") end),
+       ]]
 
     -- Pomf shit
-    --[[
-       [ awful.key({ "Control", "Shift" }, "3", function () os.execute("poomf -f") end),
-       [ awful.key({ "Control", "Shift" }, "4", function () os.execute("poomf -s") end),
-       ]]
+    awful.key({ "Control", "Shift" }, "3", function () awful.util.spawn_with_shell("poomf -f") end),
+    awful.key({ "Control", "Shift" }, "4", function () awful.util.spawn_with_shell("poomf -s") end),
+
+    -- Lock
+    awful.key({ altkey, }, "l", function () awful.util.spawn_with_shell("xlock") end),
 
     -- Prompt
     awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
@@ -756,7 +761,13 @@ awful.rules.rules = {
 
     { rule = { instance = "plugin-container" },
           properties = { tag = tags[1][1],
-                         floating = true } },
+                         floating = true,
+                         focus = true } },
+
+    { rule = { instance = "exe" },
+          properties = { tag = tags[1][1],
+                         floating = true,
+                         focus = true } },
 
     { rule = { instance = "gpick" },
           properties = {floating = true } },

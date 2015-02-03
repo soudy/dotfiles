@@ -5,95 +5,87 @@ urxvt.scrollBar: false
 urxvt.internalBorder: 11
 urxvt.geometry: 80x24
 
-urxvt*background: #332F2D
-urxvt*foreground: #DBD2B8
+! urxvt*background: #332F2D
+! urxvt*foreground: #DBD2B8
 
-! urxvt*background: #363636
-! urxvt*foreground: #D2C5BC
+! !black
+! urxvt*color8:    #6B5E56
+! urxvt*color0:    #3D3632
+! !red
+! urxvt*color1:    #965C4A
+! urxvt*color9:    #965C4A
+! !green
+! urxvt*color2:    #A69A6F
+! urxvt*color10:   #A69A6F
+! !yellow
+! urxvt*color3:    #9C7D5F
+! urxvt*color11:   #B09172
+! !blue
+! urxvt*color4:    #7A6657
+! urxvt*color12:   #947A68
+! !magenta
+! urxvt*color5:    #8A5B5B
+! urxvt*color13:   #A87B8B
+! !cyan
+! urxvt*color6:    #6B6475
+! urxvt*color14:   #7F788A
+! !white
+! ! urxvt*color15: #DBD2B8
+! ! urxvt*color7: #DBD2B8
+! urxvt*color15: #CCC2A5
+! urxvt*color7: #CCC2A5
 
-! ! BLACK
-! urxvt*color0: #3d3d3d
-! urxvt*color8: #545454
-! ! RED
-! urxvt*color1: #B0777B
-! urxvt*color9: #AA7E87
-! ! GREEN
-! urxvt*color2: #94A65D
-! urxvt*color10: #BCC682
-! ! YELLOW
-! urxvt*color3: #FCD786
-! urxvt*color11: #ECC386
-! ! BLUE
-! urxvt*color4: #869AA3
-! urxvt*color12: #96A8B7
-! ! MAGENTA
-! urxvt*color5: #9F98B7
-! urxvt*color13: #A393CE
-! ! CYAN
-! urxvt*color6: #93A2B9
-! urxvt*color14: #9BB7CC
-! ! WHITE
-! urxvt*color7: #FAFAFA
-! urxvt*color15: #FFFFFF
-!
-! ! BLACK
-! urxvt*color0: #3d3d3d
-! urxvt*color8: #545454
-! ! RED
-! urxvt*color1: #c96e77
-! urxvt*color9: #c96e77
-! ! GREEN
-! urxvt*color2: #a5bb94
-! urxvt*color10: #a5bb94
-! ! YELLOW
-! urxvt*color3: #daba67
-! urxvt*color11: #daba67
-! ! BLUE
-! urxvt*color4: #90a8d6
-! urxvt*color12: #90a8d6
-! ! MAGENTA
-! urxvt*color5: #e2c69f
-! urxvt*color13: #e2c69f
-! ! CYAN
-! urxvt*color6: #bbc0e8
-! urxvt*color14: #bbc0e8
-! ! WHITE
-! urxvt*color7: #FAFAFA
-! urxvt*color15: #FFFFFF
-
-
+urxvt*background: #242424
+urxvt*foreground: #cdcdcd
 !black
-urxvt*color8:    #6B5E56
-urxvt*color0:    #3D3632
-!red
+urxvt*color0:#313131
+urxvt*color8:#4a4a4a
+
 urxvt*color1:    #965C4A
 urxvt*color9:    #965C4A
-!green
-urxvt*color2:    #A69A6F
-urxvt*color10:   #A69A6F
 !yellow
 urxvt*color3:    #9C7D5F
 urxvt*color11:   #B09172
-!blue
-urxvt*color4:    #7A6657
-urxvt*color12:   #947A68
 !magenta
 urxvt*color5:    #8A5B5B
 urxvt*color13:   #A87B8B
 !cyan
 urxvt*color6:    #6B6475
 urxvt*color14:   #7F788A
+! !red
+! ! urxvt*color1:#b37474
+! ! urxvt*color9:#b37474
+! urxvt*color1:    #965C4A
+! urxvt*color9:    #965C4A
+!green
+urxvt*color2:#6d715e
+urxvt*color10:#6d715e
+! !yellow
+! urxvt*color3:    #9C7D5F
+! urxvt*color11:   #B09172
+! ! urxvt*color3:#af865a
+! ! urxvt*color11:#af865a
+!blue
+urxvt*color4:#535C5C
+urxvt*color12:#535C5C
+! !magenta
+! urxvt*color5:#775759
+! urxvt*color13:#775759
+! !cyan
+! urxvt*color6:    #6B6475
+! urxvt*color14:   #7F788A
+! ! urxvt*color6:#7b8748
+! ! urxvt*color14:#7b8748
 !white
-! urxvt*color15: #DBD2B8
-! urxvt*color7: #DBD2B8
-urxvt*color15: #CCC2A5
-urxvt*color7: #CCC2A5
+urxvt*color7:#cdcdcd
+urxvt*color15:#cdcdcd
+! urxvt*color15:#c0b18b
 
-urxvt*font: xft:berry:size=9
-urxvt*boldFont: xft:berry:size=9
-! urxvt*font: xft:Monospace:bold:size=8
-! urxvt*boldFont: xft:Monospace:bold:size=8
-urxvt.letterSpace:0
+! urxvt*font: xft:berry:size=8
+! urxvt*boldFont: xft:berry:size=8
+urxvt*font: xft:Monospace:bold:size=8
+urxvt*boldFont: xft:Monospace:bold:size=8
+urxvt.letterSpace:-1
 Xft.dpi:96
 Xft.antialias:1
 Xft.hinting:0
@@ -103,6 +95,8 @@ Xft.rgba:rgb
 Xft.lcdfilter:lcddefault
 
 ! clickable urls
+urxvt*matcher.pattern.1:  \\b(mailto|http|https|ftp|file):[/]*[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+urxvt*matcher.pattern.2: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 urxvt.perl-ext-common: default,matcher
 urxvt.url-launcher:    /usr/bin/firefox
 urxvt.matcher.button:  1
