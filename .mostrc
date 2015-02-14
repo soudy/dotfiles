@@ -34,3 +34,5 @@ setkey bob "p"
 setkey goto_mark "'"
 setkey find_file "E"
 setkey edit "v"
+
+color status white black

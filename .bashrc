@@ -23,7 +23,6 @@ alias setssh='eval $(ssh-agent) && ssh-add'
 alias se='sudoedit'
 alias bashrc='vim ~/.bashrc'
 alias vimrc='vim ~/.vimrc'
-alias ff='exec firefox'
 alias grep='grep --color=auto'
 alias wmap='nmap -sP 192.168.1-255.1-255'
 alias suspend='sudo pm-suspend'
@@ -33,7 +32,7 @@ alias mkdir='mkdir -pv'
 alias ls='ls --color=always'
 alias sl='ls'
 alias l='ls'
-alias ll='ls -Al'
+alias ll='ls -Alh'
 alias ticktock='watch -n1 "date '+%D%n%T'|figlet -k"'
 alias pcat='pygmentize -O style=native -g'
 alias df='df -H'
@@ -41,12 +40,16 @@ alias merrychristmas='curl climagic\.org/txt/jb.txt|while read -r c n l;do print
 alias snow="xsnow -notrees -nosanta -norudolf -snowflakes 1000 -nokeepsnow"
 alias vi="vim"
 alias sudo="sudo "
+alias dual="xrandr --output HDMI1 --mode 1920x1080 --pos 0x0 --rotate normal             \
+            --output VIRTUAL1 --off --output DP1 --off --output eDP1 --off --output VGA1 \
+            --mode 1920x1080 --pos 1920x0 --rotate normal"
 
 #enable and disable http firewall
 alias httpe='sudo firewall-cmd --add-service=http'
 alias httpr='sudo firewall-cmd --remove-service=http'
 
-export PS1="\[\e[00;36m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;35m\]\h\[\e[0m\]\[\e[00;37m\] [\[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\]] \[\e[0m\]"
+#export PS1="\[\e[00;36m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;35m\]\h\[\e[0m\]\[\e[00;37m\] [\[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\]] \[\e[0m\]"
+export PS1="\[\e[00;36m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;35m\]\h\[\e[0m\]\[\e[00;37m\] \[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\] % \[\e[0m\]"
 
 
 # append to the history file, don't overwrite it

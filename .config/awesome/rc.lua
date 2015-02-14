@@ -69,7 +69,6 @@ end
 
 run_once("urxvtd")
 run_once("xscreensaver")
-run_once("mysqld")
 run_once("unclutter")
 run_once("nm-applet")
 run_once("mpd")
@@ -410,7 +409,6 @@ for s = 1, screen.count() do
     right_layout:add(mytextclock)
     right_layout:add(spr)
     right_layout:add(spr)
-    --[[ right_layout:add(mylayoutbox[s]) ]]
 
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
@@ -736,14 +734,14 @@ root.keys(globalkeys)
 -- {{{ Rules
 awful.rules.rules = {
     -- All clients will match this rule.
-    { rule = {}, properties = {}, callback = awful.client.setslave},
     { rule = {},
       properties = { border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
                      keys = clientkeys,
                      buttons = clientbuttons,
-	                 size_hints_honor = false } },
+	                 size_hints_honor = false,
+                     callback = awful.client.setslave}, },
     { rule = { class = "URxvt" },
           properties = { opacity = 0.99 } },
 

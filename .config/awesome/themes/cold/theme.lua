@@ -10,10 +10,10 @@ theme                               = {}
 themes_dir                          = os.getenv("HOME") .. "/.config/awesome/themes/cold"
 theme.wallpaper                     = themes_dir .. "/flow.jpg"
 
-theme.font                          = "Sans 8"
+theme.font                          = "Source Han Sans CN 9"
 theme.fg_normal                     = "#cdcdcd"
 theme.fg_focus                      = "#cdcdcd"
-theme.fg_urgent                     = "#cdcdcd"
+theme.fg_urgent                     = "#6B6475"
 theme.bg_normal                     = "#242424"
 theme.bg_focus                      = "#6B6475"
 theme.bg_urgent                     = "#6B6475"

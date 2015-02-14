@@ -6,7 +6,6 @@ set hidden
 set smarttab
 set showmatch
 set ruler
-set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 set smartindent
 set tabstop=4
 set shiftwidth=4
@@ -318,6 +317,8 @@ let g:pymode_trim_whitespaces = 1
 let g:pymode_options_max_line_length = 79
 let g:pymode_folding = 0
 let g:pymode_lint = 0
+
+let python_highlight_all = 1
 
 " rainbow parentheses
 " au VimEnter * RainbowParenthesesToggle
