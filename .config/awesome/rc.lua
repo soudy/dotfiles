@@ -80,7 +80,7 @@ os.execute("xset r rate 220 65")
 os.setlocale(os.getenv("LANG"))
 
 -- beautiful init
-beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/cold/theme.lua")
+beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/woods/theme.lua")
 
 -- common
 modkey     = "Mod4"
@@ -135,7 +135,7 @@ markup = lain.util.markup
 
 -- Textclock
 clockicon = wibox.widget.imagebox(beautiful.widget_clock)
-mytextclock = awful.widget.textclock(" %a %d %b :: %H:%M")
+mytextclock = awful.widget.textclock(" %a %d %b - %H:%M")
 
 -- calendar
 lain.widgets.calendar:attach(mytextclock, { font_size = 8 })
@@ -179,10 +179,10 @@ mpdwidget = lain.widgets.mpd({
             mpdicon:set_image(beautiful.widget_music)
         end
 
-        widget:set_markup(markup("#6B6475", artist) .. title)
+        widget:set_markup(markup("#a6968f", artist) .. title)
     end
 })
-mpdwidgetbg = wibox.widget.background(mpdwidget, "#242424")
+mpdwidgetbg = wibox.widget.background(mpdwidget, "#2f2f33")
 
 -- MEM
 memicon = wibox.widget.imagebox(beautiful.widget_mem)
@@ -341,7 +341,7 @@ for s = 1, screen.count() do
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
     -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "top", screen = s, height = 18 })
+    mywibox[s] = awful.wibox({ position = "top", screen = s, height = 16 })
 
     -- Widgets that are aligned to the upper left
     local left_layout = wibox.layout.fixed.horizontal()
@@ -357,13 +357,11 @@ for s = 1, screen.count() do
     end
     right_layout:add(spr)
     right_layout:add(spr)
-    right_layout:add(spr)
     --[[ right_layout:add(arrl_ld) ]]
     --[[ right_layout:add(arrl_dl) ]]
     --right_layout:add(arrl_ld)
     right_layout:add(mpdicon)
     right_layout:add(mpdwidgetbg)
-    right_layout:add(spr)
     right_layout:add(spr)
     right_layout:add(spr)
     --right_layout:add(arrl_dl)
@@ -374,7 +372,6 @@ for s = 1, screen.count() do
     --right_layout:add(mailwidget)
     --[[ right_layout:add(arrl_ld) ]]
     --[[ right_layout:add(arrl_dl) ]]
-    right_layout:add(spr)
     right_layout:add(spr)
     right_layout:add(spr)
     right_layout:add(memicon)
@@ -394,7 +391,6 @@ for s = 1, screen.count() do
     --[[ right_layout:add(arrl_dl) ]]
     right_layout:add(spr)
     right_layout:add(spr)
-    right_layout:add(spr)
     right_layout:add(baticon)
     right_layout:add(batwidget)
     --[[ right_layout:add(arrl_ld) ]]
@@ -409,6 +405,7 @@ for s = 1, screen.count() do
     right_layout:add(mytextclock)
     right_layout:add(spr)
     right_layout:add(spr)
+    right_layout:add(mylayoutbox[s])
 
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()

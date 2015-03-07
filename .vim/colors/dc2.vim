@@ -49,12 +49,12 @@ hi FoldColumn              ctermfg=6   ctermbg=0
 hi Folded                  ctermfg=6   ctermbg=0
 hi Function                ctermfg=3
 hi Identifier              ctermfg=11
-hi IncSearch               ctermfg=254 ctermbg=4
+hi IncSearch               ctermfg=7 ctermbg=0
 hi Keyword                 ctermfg=4
 hi Label                   ctermfg=5
 hi LineNr                  ctermfg=8
 hi Macro                   ctermfg=11
-hi MatchParen              ctermfg=0   ctermbg=10
+hi MatchParen              ctermfg=0   ctermbg=6
 hi ModeMsg                 ctermfg=3
 hi MoreMsg                 ctermfg=14
 hi Number                  ctermfg=6
@@ -62,30 +62,30 @@ hi Normal                  ctermfg=7
 hi NonText                 ctermfg=2
 hi Operator                ctermfg=1
 hi PreCondit               ctermfg=10  cterm=none
-hi PreProc                 ctermfg=104
+hi PreProc                 ctermfg=1
 hi Question                ctermfg=14
 hi Repeat                  ctermfg=14
-hi Search                  ctermfg=254 ctermbg=4
+hi Search                  ctermfg=0 ctermbg=15
 hi Support                 ctermfg=1
 hi SpecialChar             ctermfg=13
-hi SpecialComment          ctermfg=108
+hi SpecialComment          ctermfg=1
 hi Special                 ctermfg=7
 hi SpecialKey              ctermfg=10
 hi Statement               ctermfg=4   ctermbg=none
 hi StorageClass            ctermfg=6
-hi String                  ctermfg=2
+hi String                  ctermfg=4
 hi Structure               ctermfg=12
 hi Tag                     ctermfg=9
 hi Title                   ctermfg=7   ctermbg=none cterm=bold
 hi Todo                    ctermfg=10  ctermbg=0
 hi Typedef                 ctermfg=9
 hi Type                    ctermfg=9
-hi Underlined              ctermfg=104 ctermbg=232
-hi VertSplit               ctermfg=65  ctermbg=235
-hi Visual                  ctermfg=254 ctermbg=4
-hi VisualNOS               ctermfg=10  ctermbg=235  cterm=bold
+hi Underlined              ctermfg=4 ctermbg=none
+hi VertSplit               ctermfg=none  ctermbg=5
+hi Visual                  ctermfg=none ctermbg=8
+hi VisualNOS               ctermfg=10  ctermbg=5  cterm=bold
 hi WarningMsg              ctermfg=9
-hi WildMenu                ctermbg=0   ctermfg=104
+hi WildMenu                ctermbg=0   ctermfg=5
 hi CursorLine              ctermbg=0   cterm=none
 hi SignColumn              ctermbg=8
 
