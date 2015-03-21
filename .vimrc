@@ -55,6 +55,9 @@ set nopaste
 set textwidth=80
 set formatoptions=trqlcj
 
+autocmd WinLeave * set number norelativenumber
+autocmd WinEnter * set number relativenumber
+
 " tabs for makefiles
 au FileType make setlocal noexpandtab
 
@@ -80,7 +83,7 @@ set backupdir=~/.vim/backup
 set directory=~/.vim/tmp
 
 " enable clipboard
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " Automatically source vimrc on save.
 autocmd! bufwritepost $MYVIMRC source $MYVIMRC
@@ -195,8 +198,8 @@ nnoremap N Nzz
 nnoremap n nzz
 
 " swap : with ;
-nnoremap ; :
-nnoremap : ;
+noremap ; :
+noremap : ;
 
 " surrounds
 map <Leader>s ysiw
@@ -289,9 +292,6 @@ let g:mta_set_default_matchtag_color = 0
 " errors
 let g:syntastic_aggregate_errors = 1
 
-" disable php folding
-let g:DisableAutoPHPFolding = 1
-
 " powerline
 set laststatus=2
 let g:airline_left_sep=' '
@@ -313,15 +313,18 @@ let g:neocomplete#enable_at_startup = 0
 let g:neocomplete#enable_smart_case = 1
 
 " pymode
+let g:pymode_doc = 1
+let g:pymode_rope = 0
+let g:pymode_indent = 1
+let g:pymode_lint_write = 1
 let g:pymode_trim_whitespaces = 1
 let g:pymode_options_max_line_length = 79
 let g:pymode_folding = 0
 let g:pymode_lint = 0
 
 let python_highlight_all = 1
+let g:syntastic_python_python_exec = 'python2'
 
 " rainbow parentheses
 " au VimEnter * RainbowParenthesesToggle
 " au Syntax * RainbowParenthesesLoadRound
-" au Syntax * RainbowParenthesesLoadSquare
-" au Syntax * RainbowParenthesesLoadBraces

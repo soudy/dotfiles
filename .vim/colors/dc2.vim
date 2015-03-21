@@ -27,7 +27,7 @@ hi Cursor                  ctermbg=4
 hi CursorLineNr            ctermfg=2
 hi Debug                   ctermfg=13
 hi Define                  ctermfg=11
-hi Delimiter               ctermfg=7
+hi Delimiter               ctermfg=15
 hi DiffLine                ctermfg=7
 hi DiffOldLine             ctermfg=1
 hi DiffOldFile             ctermfg=1
@@ -47,7 +47,7 @@ hi Exception               ctermfg=1
 hi Float                   ctermfg=14
 hi FoldColumn              ctermfg=6   ctermbg=0
 hi Folded                  ctermfg=6   ctermbg=0
-hi Function                ctermfg=3
+hi Function                ctermfg=1
 hi Identifier              ctermfg=11
 hi IncSearch               ctermfg=7 ctermbg=0
 hi Keyword                 ctermfg=4
@@ -73,14 +73,14 @@ hi Special                 ctermfg=7
 hi SpecialKey              ctermfg=10
 hi Statement               ctermfg=4   ctermbg=none
 hi StorageClass            ctermfg=6
-hi String                  ctermfg=4
+hi String                  ctermfg=5
 hi Structure               ctermfg=12
 hi Tag                     ctermfg=9
 hi Title                   ctermfg=7   ctermbg=none cterm=bold
 hi Todo                    ctermfg=10  ctermbg=0
 hi Typedef                 ctermfg=9
 hi Type                    ctermfg=9
-hi Underlined              ctermfg=4 ctermbg=none
+hi Underlined              ctermfg=4 ctermbg=2
 hi VertSplit               ctermfg=none  ctermbg=5
 hi Visual                  ctermfg=none ctermbg=8
 hi VisualNOS               ctermfg=10  ctermbg=5  cterm=bold
