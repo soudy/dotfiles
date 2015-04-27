@@ -25,8 +25,6 @@ alias bashrc='vim ~/.bashrc'
 alias vimrc='vim ~/.vimrc'
 alias grep='grep --color=auto'
 alias wmap='nmap -sP 192.168.1-255.1-255'
-alias suspend='sudo pm-suspend'
-alias hibernate='sudo pm-hibernate'
 alias poweroff='sudo poweroff'
 alias mkdir='mkdir -pv'
 alias ls='ls --color=always'
@@ -49,7 +47,7 @@ alias httpe='sudo firewall-cmd --add-service=http'
 alias httpr='sudo firewall-cmd --remove-service=http'
 
 #export PS1="\[\e[00;36m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;35m\]\h\[\e[0m\]\[\e[00;37m\] [\[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\]] \[\e[0m\]"
-export PS1="\[\e[00;32m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;35m\]\h\[\e[0m\]\[\e[00;37m\] \[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\] >> \[\e[0m\]"
+export PS1="\[\e[00;37m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;35m\]\h\[\e[0m\]\[\e[00;37m\] \[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\] >> \[\e[0m\]"
 
 
 # append to the history file, don't overwrite it

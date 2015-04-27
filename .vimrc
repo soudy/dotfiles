@@ -195,8 +195,8 @@ nnoremap N Nzz
 nnoremap n nzz
 
 " swap : with ;
-nnoremap ; :
-nnoremap : ;
+noremap ; :
+noremap : ;
 
 " surrounds
 map <Leader>s ysiw
@@ -286,9 +286,6 @@ let NERDSpaceDelims=1
 let g:mta_use_matchparen_group = 0
 let g:mta_set_default_matchtag_color = 0
 
-" errors
-let g:syntastic_aggregate_errors = 1
-
 " disable php folding
 let g:DisableAutoPHPFolding = 1
 
@@ -302,26 +299,38 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 " tell syntastic to use c++11 standards
 let g:syntastic_cpp_compiler_options = " -std=c++11"
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_javascript_checkers = ['jshint']
 
 let g:snips_author="soud"
+let g:email="soud@protonmail.com"
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " neocomplete
 let g:neocomplete#enable_at_startup = 0
-let g:neocomplete#enable_smart_case = 1
+" let g:neocomplete#enable_smart_case = 1
 
 " pymode
+let g:pymode = 1
+let g:pymode_syntax_all = 1
+let g:pymode_warnings = 0
+let g:pymode_indent = 1
+let g:pymode_doc = 1
+let g:pymode_lint = 0
+let g:pymode_rope = 0
 let g:pymode_trim_whitespaces = 1
 let g:pymode_options_max_line_length = 79
 let g:pymode_folding = 0
 let g:pymode_lint = 0
-
-let python_highlight_all = 1
 
 " rainbow parentheses
 " au VimEnter * RainbowParenthesesToggle
 " au Syntax * RainbowParenthesesLoadRound
 " au Syntax * RainbowParenthesesLoadSquare
 " au Syntax * RainbowParenthesesLoadBraces
+
+let g:JSLintHighlightErrorLine = 0
+
+let g:gtfo#terminals = { 'unix' : 'urxvt -cd' }

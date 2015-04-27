@@ -5,158 +5,93 @@ urxvt.scrollBar: false
 urxvt.internalBorder: 11
 urxvt.geometry: 80x24
 
-! urxvt*background: #332F2D
-! urxvt*foreground: #DBD2B8
+! urxvt*background: #2f2f33
+! urxvt*foreground: #bfc5c2
 
 ! !black
-! urxvt*color8:    #6B5E56
-! urxvt*color0:    #3D3632
+! urxvt*color0:#38383d
+! ! urxvt*color8:#47474D
+! ! urxvt*color0:#313131
+! urxvt*color8:#4F4F57
+
 ! !red
-! urxvt*color1:    #965C4A
-! urxvt*color9:    #965C4A
+! urxvt*color1:#b59a8d
+! urxvt*color9:#9c8479
+
 ! !green
-! urxvt*color2:    #A69A6F
-! urxvt*color10:   #A69A6F
+! urxvt*color2:#91a687
+! urxvt*color10:#7a8c72
+
 ! !yellow
-! urxvt*color3:    #9C7D5F
-! urxvt*color11:   #B09172
+! urxvt*color3:#d8cbb8
+! urxvt*color11:#bfb4a3
+
 ! !blue
-! urxvt*color4:    #7A6657
-! urxvt*color12:   #947A68
+! urxvt*color4:#a5c2c6
+! urxvt*color12:#91aaae
+
 ! !magenta
-! urxvt*color5:    #8A5B5B
-! urxvt*color13:   #A87B8B
+! urxvt*color5:#a6968f
+! urxvt*color13:#8c7f79
+
 ! !cyan
-! urxvt*color6:    #6B6475
-! urxvt*color14:   #7F788A
+! urxvt*color6:#92b3a6
+! urxvt*color14:#7d998e
+
 ! !white
-! ! urxvt*color15: #DBD2B8
-! ! urxvt*color7: #DBD2B8
-! urxvt*color15: #CCC2A5
-! urxvt*color7: #CCC2A5
+! urxvt*color7:#bfc5c2
+! urxvt*color15:#c8cfcb
 
-! urxvt*background: #242424
-! urxvt*foreground: #cdcdcd
-! !black
-! urxvt*color0:#313131
-! urxvt*color8:#4a4a4a
 
-! urxvt*color1:    #965C4A
-! urxvt*color9:    #965C4A
-! !yellow
-! urxvt*color3:    #9C7D5F
-! urxvt*color11:   #B09172
-! !magenta
-! urxvt*color5:    #8A5B5B
-! urxvt*color13:   #A87B8B
-! !cyan
-! urxvt*color6:    #6B6475
-! urxvt*color14:   #7F788A
-! ! !red
-! ! ! urxvt*color1:#b37474
-! ! ! urxvt*color9:#b37474
-! ! urxvt*color1:    #965C4A
-! ! urxvt*color9:    #965C4A
-! !green
-! urxvt*color2:#6d715e
-! urxvt*color10:#6d715e
-! ! !yellow
-! ! urxvt*color3:    #9C7D5F
-! ! urxvt*color11:   #B09172
-! ! ! urxvt*color3:#af865a
-! ! ! urxvt*color11:#af865a
-! !blue
-! urxvt*color4:#535C5C
-! urxvt*color12:#535C5C
-! ! !magenta
-! ! urxvt*color5:#775759
-! ! urxvt*color13:#775759
-! ! !cyan
-! ! urxvt*color6:    #6B6475
-! ! urxvt*color14:   #7F788A
-! ! ! urxvt*color6:#7b8748
-! ! ! urxvt*color14:#7b8748
-! !white
-! urxvt*color7:#cdcdcd
-! urxvt*color15:#cdcdcd
-! ! urxvt*color15:#c0b18b
-!-------------------------------------------------------------------------------
-
-! urxvt*background: #1d1f21
-! urxvt*foreground: #cdcdcd
-! ! BLACK
-! ! urxvt*color0: #525252
-! ! urxvt*color8: #707070
-! urxvt*color0:#313131
-! urxvt*color8:#4a4a4a
-! ! RED !NEW
-! urxvt*color1: #E8A282
-! urxvt*color9: #D86F6B
-! ! GREEN
-! ! urxvt*color2: #94A65D
-! ! urxvt*color10: #BACD8F
-! urxvt*color2:#6d715e
-! urxvt*color10:#6d715e
-! ! YELLOW
-! urxvt*color3: #A27766
-! urxvt*color11: #C87F6B
-! ! BLUE !NEW
-! urxvt*color4: #607878
-! urxvt*color12: #617C83
-! ! MAGENTA
-! urxvt*color5: #88AABB
-! urxvt*color13: #AACCDD
-! ! CYAN
-! urxvt*color6:    #6B6475
-! urxvt*color14:   #7F788A
-! ! urxvt*color5: #9F9CA9
-! ! urxvt*color13: #B3A5B2
-! ! WHITE
-! urxvt*color7: #D2D1D4
-! urxvt*color15: #D6DAC3
-
-urxvt*background: #2f2f33
-urxvt*foreground: #bfc5c2
+urxvt*background: #1d1f21
+urxvt*foreground: #c5c8c6
 
 !black
-urxvt*color0:#38383d
+urxvt*color0:#282a2e
 ! urxvt*color8:#47474D
 ! urxvt*color0:#313131
-urxvt*color8:#4F4F57
+urxvt*color8:#373b41
 
 !red
-urxvt*color1:#b59a8d
-urxvt*color9:#9c8479
+urxvt*color1:#a54242
+urxvt*color9:#cc6666
 
 !green
-urxvt*color2:#91a687
-urxvt*color10:#7a8c72
+urxvt*color2:#8c9440
+urxvt*color10:#b5bd68
+! urxvt*color2:#91a687
+! urxvt*color10:#7a8c72
 
 !yellow
-urxvt*color3:#d8cbb8
-urxvt*color11:#bfb4a3
+urxvt*color3:#de935f
+urxvt*color11:#f0c674
 
 !blue
-urxvt*color4:#a5c2c6
-urxvt*color12:#91aaae
+urxvt*color4:#5f819d
+urxvt*color12:#81a2be
 
 !magenta
-urxvt*color5:#a6968f
-urxvt*color13:#8c7f79
+urxvt*color5:#85678F
+urxvt*color13:#b294bb
 
 !cyan
-urxvt*color6:#92b3a6
-urxvt*color14:#7d998e
+urxvt*color6:#5e8d87
+urxvt*color14:#8abeb7
 
 !white
+! urxvt*color7:#707880
+! urxvt*color15:#c5c8c6
 urxvt*color7:#bfc5c2
 urxvt*color15:#c8cfcb
+
 
 ! urxvt*font: xft:berry:size=8
 ! urxvt*boldFont: xft:berry:size=8
 urxvt*font: xft:Terminus:size=8
 urxvt*boldFont: xft:Terminus:size=8
-urxvt.letterSpace:0
+! urxvt*font: xft:Inconsolata:size=10
+! urxvt*boldFont: xft:bold:Inconsolata:size=10
+urxvt.letterSpace:1
 Xft.dpi:96
 Xft.antialias:1
 Xft.hinting:0
@@ -168,6 +103,6 @@ Xft.lcdfilter:lcddefault
 ! clickable urls
 urxvt*matcher.pattern.1:  \\b(mailto|http|https|ftp|file):[/]*[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 urxvt*matcher.pattern.2: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-urxvt.perl-ext-common: default,matcher
+urxvt.perl-ext-common: default,matcher,clipboard
 urxvt.url-launcher:    /usr/bin/firefox
 urxvt.matcher.button:  1

@@ -68,7 +68,6 @@ function run_once(cmd)
 end
 
 run_once("urxvtd")
-run_once("xscreensaver")
 run_once("unclutter")
 run_once("nm-applet")
 run_once("mpd")
@@ -179,10 +178,10 @@ mpdwidget = lain.widgets.mpd({
             mpdicon:set_image(beautiful.widget_music)
         end
 
-        widget:set_markup(markup("#a6968f", artist) .. title)
+        widget:set_markup(markup("#5f819d", artist) .. title)
     end
 })
-mpdwidgetbg = wibox.widget.background(mpdwidget, "#2f2f33")
+mpdwidgetbg = wibox.widget.background(mpdwidget, "#1d1f21")
 
 -- MEM
 memicon = wibox.widget.imagebox(beautiful.widget_mem)
@@ -405,7 +404,7 @@ for s = 1, screen.count() do
     right_layout:add(mytextclock)
     right_layout:add(spr)
     right_layout:add(spr)
-    right_layout:add(mylayoutbox[s])
+    --[[ right_layout:add(mylayoutbox[s]) ]]
 
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
@@ -490,16 +489,6 @@ globalkeys = awful.util.table.join(
         function()
             awful.client.focus.bydirection("right")
             if client.focus then client.focus:raise() end
-        end),
-
-    -- Brightness
-    awful.key({}, "XF86MonBrightnessDown",
-        function ()
-            awful.util.spawn("xbacklight -dec 15")
-        end),
-    awful.key({}, "XF86MonBrightnessUp",
-        function ()
-            awful.util.spawn("xbacklight -inc 15")
         end),
 
     -- Show Menu
@@ -649,7 +638,7 @@ globalkeys = awful.util.table.join(
     awful.key({ "Control", "Shift" }, "4", function () awful.util.spawn_with_shell("poomf -s") end),
 
     -- Lock
-    awful.key({ altkey, }, "l", function () awful.util.spawn_with_shell("xlock") end),
+    awful.key({ altkey, }, "l", function () awful.util.spawn_with_shell(". /usr/local/bin/lock") end),
 
     -- Prompt
     awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
