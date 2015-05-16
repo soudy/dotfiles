@@ -5,98 +5,82 @@ urxvt.scrollBar: false
 urxvt.internalBorder: 11
 urxvt.geometry: 80x24
 
-! urxvt*background: #2f2f33
-! urxvt*foreground: #bfc5c2
+! urxvt*background: #1d1f21
+! urxvt*foreground: #c5c8c6
 
 ! !black
-! urxvt*color0:#38383d
+! urxvt*color0:#282a2e
 ! ! urxvt*color8:#47474D
 ! ! urxvt*color0:#313131
-! urxvt*color8:#4F4F57
+! urxvt*color8:#373b41
 
 ! !red
-! urxvt*color1:#b59a8d
-! urxvt*color9:#9c8479
+! urxvt*color1:#a54242
+! urxvt*color9:#cc6666
 
 ! !green
-! urxvt*color2:#91a687
-! urxvt*color10:#7a8c72
+! urxvt*color2:#8c9440
+! urxvt*color10:#b5bd68
+! ! urxvt*color2:#91a687
+! ! urxvt*color10:#7a8c72
 
 ! !yellow
-! urxvt*color3:#d8cbb8
-! urxvt*color11:#bfb4a3
+! urxvt*color3:#de935f
+! urxvt*color11:#f0c674
 
 ! !blue
-! urxvt*color4:#a5c2c6
-! urxvt*color12:#91aaae
+! urxvt*color4:#5f819d
+! urxvt*color12:#81a2be
 
 ! !magenta
-! urxvt*color5:#a6968f
-! urxvt*color13:#8c7f79
+! urxvt*color5:#85678F
+! urxvt*color13:#b294bb
 
 ! !cyan
-! urxvt*color6:#92b3a6
-! urxvt*color14:#7d998e
+! urxvt*color6:#5e8d87
+! urxvt*color14:#8abeb7
 
 ! !white
+! ! urxvt*color7:#707880
+! ! urxvt*color15:#c5c8c6
 ! urxvt*color7:#bfc5c2
 ! urxvt*color15:#c8cfcb
 
+urxvt.foreground:   #c5c8c6
+urxvt.background:   #1d1f21
 
-urxvt*background: #1d1f21
-urxvt*foreground: #c5c8c6
+urxvt.cursorColor:  #CA5E64
 
-!black
-urxvt*color0:#282a2e
-! urxvt*color8:#47474D
-! urxvt*color0:#313131
-urxvt*color8:#373b41
-
-!red
-urxvt*color1:#a54242
-urxvt*color9:#cc6666
-
-!green
-urxvt*color2:#8c9440
-urxvt*color10:#b5bd68
-! urxvt*color2:#91a687
-! urxvt*color10:#7a8c72
-
-!yellow
-urxvt*color3:#de935f
-urxvt*color11:#f0c674
-
-!blue
-urxvt*color4:#5f819d
-urxvt*color12:#81a2be
-
-!magenta
-urxvt*color5:#85678F
-urxvt*color13:#b294bb
-
-!cyan
-urxvt*color6:#5e8d87
-urxvt*color14:#8abeb7
-
-!white
-! urxvt*color7:#707880
-! urxvt*color15:#c5c8c6
-urxvt*color7:#bfc5c2
-urxvt*color15:#c8cfcb
+urxvt.color0:       #282a2e
+urxvt.color8:       #373b41
+urxvt.color1:       #CD546C
+urxvt.color9:       #EF545F
+urxvt.color2:       #A5AF86
+urxvt.color10:      #BDC79E
+urxvt.color3:       #CD7860
+urxvt.color11:      #E88773
+urxvt.color4:       #7A9388
+urxvt.color12:      #94B1A3
+urxvt.color5:       #75434C
+urxvt.color13:      #BB6C73
+urxvt.color6:       #767D75
+urxvt.color14:      #9DA69E
+urxvt.color7:       #bfc5c2
+urxvt.color15:      #c8cfcb
 
 
 ! urxvt*font: xft:berry:size=8
 ! urxvt*boldFont: xft:berry:size=8
-urxvt*font: xft:Terminus:size=8
-urxvt*boldFont: xft:Terminus:size=8
+urxvt.font: xft:Pragmata Pro:size=9
+urxvt.boldFont: xft:Pragmata Pro:size=9
 ! urxvt*font: xft:Inconsolata:size=10
 ! urxvt*boldFont: xft:bold:Inconsolata:size=10
-urxvt.letterSpace:1
+urxvt.letterSpace:-2
 Xft.dpi:96
 Xft.antialias:1
 Xft.hinting:0
-Xft.hintstyle:hintnone
-Xft.autohint: false
+Xft.hintstyle:hintslight
+Xft.autohint:0
 Xft.rgba:rgb
 Xft.lcdfilter:lcddefault
 

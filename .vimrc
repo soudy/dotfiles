@@ -105,7 +105,7 @@ set undoreload=10000         " number of lines to save for undo
 autocmd BufReadPost *
             \ if line("'\"") > 0 && line("'\"") <= line("$") |
             \   exe "normal! g`\"" |
-            \ endif"`'")"'")
+            \ endif
 
 " switching between number mode
 function! ToggleNumberMode()
@@ -332,5 +332,3 @@ let g:pymode_lint = 0
 " au Syntax * RainbowParenthesesLoadBraces
 
 let g:JSLintHighlightErrorLine = 0
-
-let g:gtfo#terminals = { 'unix' : 'urxvt -cd' }

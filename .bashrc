@@ -41,14 +41,14 @@ alias sudo="sudo "
 alias dual="xrandr --output HDMI1 --mode 1920x1080 --pos 0x0 --rotate normal             \
             --output VIRTUAL1 --off --output DP1 --off --output eDP1 --off --output VGA1 \
             --mode 1920x1080 --pos 1920x0 --rotate normal"
+alias locip="ip addr show | grep -E 'inet' | grep -m 1 global | awk '{ print $2}' | sed 's/\/.*//'"
 
 #enable and disable http firewall
 alias httpe='sudo firewall-cmd --add-service=http'
 alias httpr='sudo firewall-cmd --remove-service=http'
 
 #export PS1="\[\e[00;36m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;35m\]\h\[\e[0m\]\[\e[00;37m\] [\[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\]] \[\e[0m\]"
-export PS1="\[\e[00;37m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;35m\]\h\[\e[0m\]\[\e[00;37m\] \[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\] >> \[\e[0m\]"
-
+export PS1="\[\e[00;37m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;35m\]\h\[\e[0m\]\[\e[00;37m\] \[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\] $ \[\e[0m\]"
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -62,7 +62,5 @@ shopt -s nocaseglob
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
-
-PROMPT_COMMAND='DEFTITLE="${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}"; echo -ne "\033]0;${TITLE:-$DEFTITLE}\007"'
 
 unset SSH_ASKPASS

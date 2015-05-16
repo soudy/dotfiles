@@ -79,7 +79,7 @@ os.execute("xset r rate 220 65")
 os.setlocale(os.getenv("LANG"))
 
 -- beautiful init
-beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/woods/theme.lua")
+beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/pretty/theme.lua")
 
 -- common
 modkey     = "Mod4"
@@ -134,7 +134,7 @@ markup = lain.util.markup
 
 -- Textclock
 clockicon = wibox.widget.imagebox(beautiful.widget_clock)
-mytextclock = awful.widget.textclock(" %a %d %b - %H:%M")
+mytextclock = awful.widget.textclock(" %a %d %b - %H:%M:%S", 1)
 
 -- calendar
 lain.widgets.calendar:attach(mytextclock, { font_size = 8 })
@@ -178,7 +178,7 @@ mpdwidget = lain.widgets.mpd({
             mpdicon:set_image(beautiful.widget_music)
         end
 
-        widget:set_markup(markup("#5f819d", artist) .. title)
+        widget:set_markup(markup("#ca5e64", artist) .. title)
     end
 })
 mpdwidgetbg = wibox.widget.background(mpdwidget, "#1d1f21")
@@ -639,6 +639,10 @@ globalkeys = awful.util.table.join(
 
     -- Lock
     awful.key({ altkey, }, "l", function () awful.util.spawn_with_shell(". /usr/local/bin/lock") end),
+
+    -- Record screen
+    awful.key({ altkey, }, "r", function () awful.util.spawn_with_shell("/usr/local/bin/screencast") end),
+    awful.key({ altkey, }, "x", function () awful.util.spawn_with_shell("pkill -f 'x11grab'") end),
 
     -- Prompt
     awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
