@@ -1,5 +1,10 @@
+"******************************************************************************
 " basic settings
+"******************************************************************************
+
 syntax enable
+filetype plugin indent on
+
 set nocompatible
 set autoindent
 set hidden
@@ -23,28 +28,26 @@ set sj=-50
 set cursorline
 set title
 set autoread
-filetype plugin indent on
-
 set completeopt=longest,menuone
 
 " wildmenu
 set wildmenu
 set wildmode=list:longest,full
-
-set wildignore+=.hg,.git,.svn                    " Version control
-set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
-set wildignore+=*.spl                            " compiled spelling word lists
-set wildignore+=*.sw?                            " Vim swap files
-set wildignore+=*.DS_Store                       " OSX bullshit
-
-set wildignore+=*.luac                           " Lua byte code
-
-set wildignore+=migrations                       " Django migrations
-set wildignore+=*.pyc                            " Python byte code
-
-set wildignore+=*.orig " Merge resolution files
+set wildignore+=.hg,.git,.svn
+set wildignore+=*.aux,*.out,*.toc
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest
+set wildignore+=*.spl
+set wildignore+=*.sw?
+set wildignore+=*.DS_Store
+set wildignore+=*.luac
+set wildignore+=migrations
+set wildignore+=*.pyc
+set wildignore+=*.orig
+set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+set wildignore+=*/tmp/cache/assets/*/sprockets/*,*/tmp/cache/assets/*/sass/*
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+set wildignore+=node_modules/*
 
 " new splits default to right, or below
 set splitbelow
@@ -55,24 +58,6 @@ set nopaste
 set textwidth=80
 set formatoptions=trqlcj
 
-autocmd WinLeave * set number norelativenumber
-autocmd WinEnter * set number relativenumber
-
-" tabs for makefiles
-au FileType make setlocal noexpandtab
-
-au! FileType css,scss setlocal iskeyword+=-
-
-" highlighting
-autocmd BufNewFile,BufRead *.json set ft=javascript
-autocmd BufNewFile,BufRead *.md set ft=markdown spell
-
-colorscheme dc2
-let &titleold=getcwd()
-
-" enable pathogen
-call pathogen#infect()
-
 " handle swp files
 set directory=~/.vim/swap,~/tmp,.
 set noswapfile
@@ -82,11 +67,8 @@ set backup
 set backupdir=~/.vim/backup
 set directory=~/.vim/tmp
 
-" enable clipboard
-set clipboard=unnamedplus
-
-" Automatically source vimrc on save.
-autocmd! bufwritepost $MYVIMRC source $MYVIMRC
+" use system clipboard by default
+set clipboard=unnamed
 
 " enable utf8
 set encoding=utf8
@@ -104,11 +86,37 @@ set undodir=~/.vim/undo,/tmp " where to save undo histories
 set undolevels=1000          " How many undos
 set undoreload=10000         " number of lines to save for undo
 
+" enable pathogen
+call pathogen#infect()
+
+colorscheme dc2
+let &titleold=getcwd()
+
+"******************************************************************************
+" auto commands
+"******************************************************************************
+
+" tabs for makefiles
+au FileType make setlocal noexpandtab
+
+au! FileType css,scss setlocal iskeyword+=-
+
+" Automatically source vimrc on save.
+au! bufwritepost $MYVIMRC source $MYVIMRC
+
 " return to last edit position when opening file
-autocmd BufReadPost *
+au BufReadPost *
             \ if line("'\"") > 0 && line("'\"") <= line("$") |
             \   exe "normal! g`\"" |
-            \ endif"`'")"'")
+            \ endif
+
+" highlighting
+au BufNewFile,BufRead *.json set ft=javascript
+au BufNewFile,BufRead *.md set ft=markdown spell
+
+"******************************************************************************
+" functions
+"******************************************************************************
 
 " switching between number mode
 function! ToggleNumberMode()
@@ -137,6 +145,10 @@ function! OmniPopup(action)
     return a:action
 endfunction
 
+"******************************************************************************
+" mappings
+"******************************************************************************
+
 inoremap <silent>j <C-R>=OmniPopup('j')<CR>
 inoremap <silent>k <C-R>=OmniPopup('k')<CR>
 
@@ -161,16 +173,6 @@ map <C-j> ddp
 inoremap <C-a> <C-o>0
 inoremap <C-e> <C-o>$
 
-" paste mode toggle
-set pastetoggle=<F2>
-
-" bind Ctrl+<movement> keys to move around the windows, instead of using
-" Ctrl+w + <movement>
-" noremap <C-j> <c-w>j
-" noremap <C-k> <c-w>k
-" noremap <C-l> <c-w>l
-" noremap <C-h> <c-w>h
-"
 " toggle spell check
 nnoremap <leader>sc :setlocal spell!<cr>
 
@@ -225,7 +227,7 @@ inoremap <f6> <c-o>:call ToggleNumberMode()<cr>
 
 " system clipboard pasting
 nnoremap <Leader>y :call system('xclip', @0)<cr>
-nnoremap <Leader>p "+p
+nnoremap <Leader>p "*p
 
 " deleting without saving to default register
 nnoremap <Leader>d "_d
@@ -247,40 +249,49 @@ noremap <right> 3<C-W>>
 vnoremap J :m '>+1<cr>gv=gv
 vnoremap K :m '<-2<cr>gv=gv
 
-" switching between tab modes
-"nmap <Leader>t :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<cr>
-"nmap <Leader>T :set expandtab tabstop=8 shiftwidth=8 softtabstop=4<cr>
-"
 " remove ^M
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 "
 " remove trailing whitespace
 nnoremap <Leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<cr>
 
-" easy filetype switching
-nnoremap <Leader>md :set ft=markdown<CR>
-nnoremap <Leader>hd :set ft=htmldjango<CR>
-nnoremap <Leader>jt :set ft=htmljinja<CR>
-nnoremap <Leader>js :set ft=javascript<CR>
-nnoremap <Leader>pd :set ft=python.django<CR>
-
 " open header file
 nnoremap <F4> :AS<cr>
 
-" switch between hex and dec
-noremap <F10> :call HexMe()<CR>
-let $in_hex=0
-function! HexMe()
-    set binary
-    set noeol
-    if $in_hex>0
-        :%!xxd -r
-        let $in_hex=0
-    else
-        :%!xxd
-        let $in_hex=1
-    endif
-endfunction
+" disable Ex and encryption
+command! W :w
+command! Q :q
+
+" http://vim.wikia.com/wiki/Replace_a_builtin_command_using_cabbrev
+cabbrev X <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'x' : 'X')<cr>
+
+" fix common mistypes
+cnoremap ww w
+cnoremap wW w
+cnoremap Ww w
+
+" don't save files named :, ; or )
+cnoremap w; w
+cnoremap W; w
+cnoremap x; x
+cnoremap X; x
+cnoremap w: w
+cnoremap W: w
+cnoremap x: x
+cnoremap X: x
+cnoremap w) w
+cnoremap W) w
+cnoremap x) x
+cnoremap X) x
+
+"******************************************************************************
+" plugins settins
+"******************************************************************************
+
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 " space after comment
 let NERDSpaceDelims=1
@@ -289,8 +300,8 @@ let NERDSpaceDelims=1
 let g:mta_use_matchparen_group = 0
 let g:mta_set_default_matchtag_color = 0
 
-" errors
-let g:syntastic_aggregate_errors = 1
+" disable php folding
+let g:DisableAutoPHPFolding = 1
 
 " powerline
 set laststatus=2
@@ -302,29 +313,26 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 " tell syntastic to use c++11 standards
 let g:syntastic_cpp_compiler_options = " -std=c++11"
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_javascript_checkers = ['jshint']
 
 let g:snips_author="soud"
+let g:email="soud@protonmail.com"
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-" neocomplete
-let g:neocomplete#enable_at_startup = 0
-let g:neocomplete#enable_smart_case = 1
-
 " pymode
-let g:pymode_doc = 1
-let g:pymode_rope = 0
+let g:pymode = 1
+let g:pymode_syntax_all = 1
+let g:pymode_warnings = 0
 let g:pymode_indent = 1
-let g:pymode_lint_write = 1
+let g:pymode_doc = 1
+let g:pymode_lint = 0
+let g:pymode_rope = 0
 let g:pymode_trim_whitespaces = 1
 let g:pymode_options_max_line_length = 79
 let g:pymode_folding = 0
 let g:pymode_lint = 0
 
-let python_highlight_all = 1
-let g:syntastic_python_python_exec = 'python2'
-
-" rainbow parentheses
-" au VimEnter * RainbowParenthesesToggle
-" au Syntax * RainbowParenthesesLoadRound
+let g:JSLintHighlightErrorLine = 0
