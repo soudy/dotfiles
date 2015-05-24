@@ -10,6 +10,5 @@ fi
 [[ -f ~/.Xresources ]] && xrdb -merge .Xresources
 
 xset r rate 220 65
-xset -b
 
 exec awesome

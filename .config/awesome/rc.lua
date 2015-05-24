@@ -457,6 +457,8 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey }, "Left", function () lain.util.tag_view_nonempty(-1) end),
     awful.key({ altkey }, "Right", function () lain.util.tag_view_nonempty(1) end),
 
+    awful.key({ modkey  }, "k", function() os.execute("xset r rate 220 65") end),
+
     -- Default client focus
     --[[ awful.key({ altkey }, "k",
         function ()

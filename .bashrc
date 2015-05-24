@@ -42,11 +42,6 @@ alias dual="xrandr --output HDMI1 --mode 1920x1080 --pos 0x0 --rotate normal    
             --output VIRTUAL1 --off --output DP1 --off --output eDP1 --off --output VGA1 \
             --mode 1920x1080 --pos 1920x0 --rotate normal"
 alias locip="ip addr show | grep -E 'inet' | grep -m 1 global | awk '{ print $2}' | sed 's/\/.*//'"
-
-#enable and disable http firewall
-alias httpe='sudo firewall-cmd --add-service=http'
-alias httpr='sudo firewall-cmd --remove-service=http'
-
 #export PS1="\[\e[00;36m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;35m\]\h\[\e[0m\]\[\e[00;37m\] [\[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\]] \[\e[0m\]"
 export PS1="\[\e[00;37m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;35m\]\h\[\e[0m\]\[\e[00;37m\] \[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\] $ \[\e[0m\]"
 
@@ -64,3 +59,5 @@ shopt -s nocaseglob
 # export SYSTEMD_PAGER=
 
 unset SSH_ASKPASS
+
+export PATH=~/.gem/ruby/2.2.0/bin/:$PATH

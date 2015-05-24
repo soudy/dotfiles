@@ -72,7 +72,7 @@ urxvt.color15:      #c8cfcb
 ! urxvt*font: xft:berry:size=8
 ! urxvt*boldFont: xft:berry:size=8
 urxvt.font: xft:Pragmata Pro:size=9
-urxvt.boldFont: xft:Pragmata Pro:size=9
+urxvt.boldFont: xft:Pragmata Pro:size=9:style=bold
 ! urxvt*font: xft:Inconsolata:size=10
 ! urxvt*boldFont: xft:bold:Inconsolata:size=10
 urxvt.letterSpace:-2
@@ -87,6 +87,13 @@ Xft.lcdfilter:lcddefault
 ! clickable urls
 urxvt*matcher.pattern.1:  \\b(mailto|http|https|ftp|file):[/]*[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 urxvt*matcher.pattern.2: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-urxvt.perl-ext-common: default,matcher,clipboard
+urxvt.perl-ext-common: default,matcher,clipboard,font-size
 urxvt.url-launcher:    /usr/bin/firefox
 urxvt.matcher.button:  1
+
+! font change on the fly
+URxvt.keysym.C-0:perl:font-size:reset
+URxvt.keysym.C-Up:perl:font-size:increase
+URxvt.keysym.C-Down:perl:font-size:decrease
+URxvt.keysym.C-S-Up:perl:font-size:incglobal
+URxvt.keysym.C-S-Down: perl:font-size:decglobal
