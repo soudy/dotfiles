@@ -73,7 +73,7 @@ hi Special                 ctermfg=7
 hi SpecialKey              ctermfg=10
 hi Statement               ctermfg=4   ctermbg=none
 hi StorageClass            ctermfg=6
-hi String                  ctermfg=5
+hi String                  ctermfg=4
 hi Structure               ctermfg=12
 hi Tag                     ctermfg=9
 hi Title                   ctermfg=7   ctermbg=none cterm=bold

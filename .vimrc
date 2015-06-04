@@ -96,6 +96,9 @@ let &titleold=getcwd()
 " auto commands
 "******************************************************************************
 
+" 8 tabs for makefiles and C
+au Filetype c,make setlocal tabstop=8 shiftwidth=8 softtabstop=8
+
 " tabs for makefiles
 au FileType make setlocal noexpandtab
 
@@ -148,6 +151,8 @@ endfunction
 "******************************************************************************
 " mappings
 "******************************************************************************
+
+let mapleader = "\<Space>"
 
 inoremap <silent>j <C-R>=OmniPopup('j')<CR>
 inoremap <silent>k <C-R>=OmniPopup('k')<CR>
@@ -288,9 +293,16 @@ cnoremap X) x
 " plugins settins
 "******************************************************************************
 
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+let g:ctrlp_use_caching = 0
 if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    set grepprg=ag\ --nogroup\ --nocolor
+
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+else
+  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+  let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
+    \ }
 endif
 
 " space after comment
@@ -311,9 +323,9 @@ let g:airline_theme='simple'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-" tell syntastic to use c++11 standards
+" syntastic
+let g:syntastic_mode_map = { 'passive_filetypes': ['c'] }
 let g:syntastic_cpp_compiler_options = " -std=c++11"
-let g:syntastic_aggregate_errors = 1
 let g:syntastic_javascript_checkers = ['jshint']
 
 let g:snips_author="soud"
