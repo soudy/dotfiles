@@ -7,36 +7,40 @@ XF86MonBrightnessDown
 
 #volume control
 
-XF86AudioMute
+alt + m
     amixer set Master toggle ; pkill not-stat ; not-stat Mt
 
 XF86AudioRaiseVolume
     amixer set Master 5%+ ; pkill not-stat ; not-stat Vl
 
-super + XF86AudioRaiseVolume
-    amixer set Master 1%+ ; pkill not-stat ; not-stat Vl
+alt + Up
+    amixer set Master 2%+ ; pkill not-stat ; not-stat Vl
 
 
 XF86AudioLowerVolume
     amixer set Master 5%- ; pkill not-stat ; not-stat Vl
 
-super + XF86AudioLowerVolume
-    amixer set Master 1%- ; pkill not-stat ; not-stat Vl
+alt + Down
+    amixer set Master 2%- ; pkill not-stat ; not-stat Vl
 
 
 # music controls
 
-XF86AudioPlay
-    mpc toggle
+super + c
+    urxvt -g 120x34-160+16 -e ncmpcpp
 
-super + XF86AudioPlay
-    termite -e ncmpcpp
+ctrl + alt + Right
+    mpc next || ncmpcpp next || ncmpc next || pms next
 
-XF86AudioNext
-    mpc next
+ctrl + alt + Left
+    mpc prev || ncmpcpp prev || ncmpc prev || pms prev
 
-XF86AudioPrev
-    mpc prev
+ctrl + alt + Left
+    mpc stop || ncmpcpp stop || ncmpc stop || pms stop
+
+ctrl + alt + Up
+    mpc toggle || ncmpcpp toggle || ncmpc toggle || pms toggle
+
 #
 # bspwm hotkeys
 #
@@ -76,19 +80,15 @@ super + y
 super + m
 	bspc window -s biggest
 
-#basic rotate
-super {h,j,k,l}
-	bspc window -R {left,down,up,right} 90
-
 #select window in dir
-super + {_,shift + }{Left,Down,Up,Right}
+super + {_,shift + }{h,j,k,l}
         bspc window -{f,s} {left,down,up,right}
 
-super + l
-	bspc window -t pseudo_tiled
+# super + l
+	# bspc window -t pseudo_tiled
 
-super + k
-	bspc window -t locked
+# super + k
+	# bspc window -t locked
 
 super + {_,shift + }c
 	bspc window -f {next,prev}
@@ -158,17 +158,20 @@ super + d
 # wm independent hotkeys
 #
 
+super + e
+    nautilus
+
 super + Return
 	urxvt
 
-super + w
+super + q
     firefox
 
 super + i
     chromium
 
 super + r
-	dmenu_run -p ">>>" -l 5 -nb '#181512' -nf '#bea492' -sb '#8c4c4c' -sf '#181512' -fn 'Pragmata\ Pro-9'
+	dmenu_run -p ">>>" -l 5 -nb '#181512' -nf '#bea492' -sb '#8c4c4c' -sf '#181512' -fn 'Pragmata Pro'
 
 # make sxhkd reload its configuration files:
 super + Escape

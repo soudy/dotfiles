@@ -30,7 +30,15 @@ statusbar() {
 
     mpd() {
         cur=$(mpc current)
-        echo "^fg(#907245)^i($FOLDER/note.xbm) ^fg(#bea492)$cur"
+        state=$(mpc | grep -o '\[\w*\]')
+
+        if [ "$state" == "[paused]" ]; then
+            echo "^fg(#907245)^i($FOLDER/note.xbm) ^fg(#bea492)mpd paused"
+        elif [ "$state" == "" ]; then
+            echo ""
+        else
+            echo "^fg(#907245)^i($FOLDER/note.xbm) ^fg(#bea492)$cur"
+        fi;
     }
 
     weather() {
@@ -79,10 +87,10 @@ statusbar() {
         echo "^fg(#ae5d5d)^i($FOLDER/vol.xbm) ^fg(#bea492)$volume"
     }
 
-    echo "^pa(0)^ca  $(desk) ^ca() ^pa(1600) ^fg(#282522) $(clock) ^fg(#282522)| $(mpd) ^fg(#282522)| $(pac) ^fg(#282522)| $(battery) ^fg(#282522)| $(vol) ^fg(#282522)"
+    echo "^pa(0)^ca $(desk) ^ca ^pa(160) $(mpd) ^ca ^pa(1630) ^fg(#282522)| $(pac) ^fg(#282522)| $(battery) ^fg(#282522)| $(vol) ^fg(#282522) $(clock)"
 }
 
-stalonetray --geometry 3x1-1+1 --icon-gravity E --grow-gravity E  -i 18 -d all -bg '#181512' &
+stalonetray --geometry 3x1-1+1 --icon-gravity E --grow-gravity E  -i 20 -d all -bg '#181512' &
 
 while true; do
       echo "$(statusbar)"
