@@ -1,0 +1,100 @@
+#!/bin/bash
+
+FOLDER="/home/soud/.config/bspwm"
+pkill -f "dzen2 -p -dock -title-name panel"*
+pkill -f "stalonetray"*
+
+statusbar() {
+    desk() {
+        des=$(xprop -root _NET_CURRENT_DESKTOP | awk '{print $3}')
+
+        case $des in
+            0)  echo "^fg(#8c4c4c)"www "^fg(#bea492)term" "^fg(#bea492)"chat "^fg(#bea492)"files "^fg(#bea492)"other""
+                ;;
+            1)  echo "^fg(#bea492)"www "^fg(#8c4c4c)term" "^fg(#bea492)"chat "^fg(#bea492)"files "^fg(#bea492)"other""
+                ;;
+            2)  echo "^fg(#bea492)"www "^fg(#bea492)term" "^fg(#8c4c4c)"chat "^fg(#bea492)"files "^fg(#bea492)"other""
+                ;;
+            3)  echo "^fg(#bea492)"www "^fg(#bea492)term" "^fg(#bea492)"chat "^fg(#8c4c4c)"files "^fg(#bea492)"other""
+                ;;
+            4)  echo "^fg(#bea492)"www "^fg(#bea492)term" "^fg(#bea492)"chat "^fg(#bea492)"files "^fg(#8c4c4c)"other""
+                ;;
+            *)  echo "^fg(#00e600)"www "^fg(#00e600)term" "^fg(#00e600)"chat "^fg(#00e600)"files "^fg(#00e600)"other""
+                ;;
+        esac
+    }
+
+    clock() {
+        time=$(date "+%H:%M %a %b %Y")
+        echo "^fg(#746c48)^i($FOLDER/clock.xbm) ^fg(#bea492)$time"
+    }
+
+    mpd() {
+        cur=$(mpc current)
+        state=$(mpc | grep -o '\[\w*\]')
+
+        if [ "$state" == "[paused]" ]; then
+            echo "^fg(#907245)^i($FOLDER/note.xbm) ^fg(#bea492)mpd paused"
+        elif [ "$state" == "" ]; then
+            echo ""
+        else
+            echo "^fg(#907245)^i($FOLDER/note.xbm) ^fg(#bea492)$cur"
+        fi;
+    }
+
+    weather() {
+        URL='http://www.accuweather.com/en/us/baltimore-md/21202/weather-forecast/348707'
+        w=$(wget -w 3600 -q -O- "$URL" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print ""$14", "$12"°F" }'| head -1)
+        echo "^fg(#4c626d)^i($FOLDER/temp.xbm) ^fg(#bea492)$w"
+    }
+
+    pac() {
+        pac=$(checkupdates | wc -l)
+        echo "^fg(#604c5f)^i($FOLDER/pac.xbm) ^fg(#bea492)$pac"
+    }
+
+    load() {
+        load=$(uptime | awk -F'average:' '{print ($2 + $3 + $4)*10}')
+        echo "^fg(#4b5e55)^i($FOLDER/cpu.xbm) ^fg(#bea492)$load%"
+    }
+
+    mem() {
+        mem=$(free -m | awk 'NR==2{printf "%sMB", $3 }')
+        echo "^fg(#4b5e55)^i($FOLDER/cpu.xbm) ^fg(#bea492)$mem"
+    }
+
+    battery() {
+        cmd=$(acpi -b | sed 's/.*[ \t][ \t]*\([0-9][0-9]*\)%.*/\1/')
+
+        if [ "$cmd" -le 100 ] && [ "$cmd" -ge 90 ]
+        then
+            echo "^fg(#00e600)^i($FOLDER/battery_full.xbm) ^fg(#bea492)$cmd%"
+        elif [ "$cmd" -lt 90 ] && [ "$cmd" -ge 75 ]
+        then
+            echo "^fg(#00e600)^i($FOLDER/battery_75.xbm) ^fg(#bea492)$cmd%"
+        elif [ "$cmd" -lt 75 ] && [ "$cmd" -ge 50 ]
+        then
+            echo "^fg(#00e600)^i($FOLDER/battery_half.xbm) ^fg(#bea492)$cmd%"
+        elif [ "$cmd" -lt 50 ] && [ "$cmd" -ge 25 ]
+        then
+            echo "^fg(#00e600)^i($FOLDER/battery_quarter.xbm) ^fg(#bea492)$cmd%"
+        elif [ "$cmd" -lt 25 ]
+        then
+            echo "^fg(#00e600)^i($FOLDER/battery_ten.xbm) ^fg(#bea492)$cmd%"
+        fi
+    }
+
+    vol() {
+        volume=$(amixer get Master | egrep -o "[0-9]+%" | head -1)
+        echo "^fg(#ae5d5d)^i($FOLDER/vol.xbm) ^fg(#bea492)$volume"
+    }
+
+    echo "^pa(0)^ca $(desk) ^ca ^pa(160) $(mpd) ^ca ^pa(1050) ^fg(#282522)| $(mem) ^fg(#282522)| $(pac) ^fg(#282522)| $(battery) ^fg(#282522)| $(vol) ^fg(#282522) $(clock)"
+}
+
+stalonetray --geometry 1x1-0+0 --icon-gravity E --grow-gravity E -i 20 -d all -bg '#181512' &
+
+while true; do
+    echo "$(statusbar)"
+    # sleep 0.5
+done | dzen2 -p -dock -title-name panel -e 'button2=;' -bg '#181512' -fn 'Pragmata\ Pro-9' -w 1420 -h 20 &
