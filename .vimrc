@@ -97,7 +97,7 @@ let &titleold=getcwd()
 "******************************************************************************
 
 " 8 tabs for makefiles and C
-au Filetype c,make setlocal tabstop=8 shiftwidth=8 softtabstop=8
+au Filetype c,make,cpp setlocal tabstop=8 shiftwidth=8 softtabstop=8
 
 " tabs for makefiles
 au FileType make setlocal noexpandtab
@@ -216,9 +216,6 @@ nnoremap <CR> :noh<CR>
 " write to read only file
 cnoremap w!! w !sudo tee % >/dev/null
 
-" toggle invisible characters
-nnoremap <leader>i :set list!<cr>
-
 " reformat file
 nnoremap <Leader>f mzgg=G`z`
 
@@ -255,7 +252,7 @@ vnoremap J :m '>+1<cr>gv=gv
 vnoremap K :m '<-2<cr>gv=gv
 
 " remove ^M
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+noremap <Leader>m :%s/<C-V><C-M>//g<cr>
 "
 " remove trailing whitespace
 nnoremap <Leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<cr>

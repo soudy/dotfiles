@@ -25,7 +25,7 @@ statusbar() {
     }
 
     clock() {
-        time=$(date "+%H:%M %a %b %Y")
+        time=$(date "+%H:%M %d %b %Y")
         echo "^fg(#746c48)^i($FOLDER/clock.xbm) ^fg(#bea492)$time"
     }
 
@@ -68,19 +68,19 @@ statusbar() {
 
         if [ "$cmd" -le 100 ] && [ "$cmd" -ge 90 ]
         then
-            echo "^fg(#00e600)^i($FOLDER/battery_full.xbm) ^fg(#bea492)$cmd%"
+            echo "^fg(#4c626d)^i($FOLDER/battery_full.xbm) ^fg(#bea492)$cmd%"
         elif [ "$cmd" -lt 90 ] && [ "$cmd" -ge 75 ]
         then
-            echo "^fg(#00e600)^i($FOLDER/battery_75.xbm) ^fg(#bea492)$cmd%"
+            echo "^fg(#4c626d)^i($FOLDER/battery_75.xbm) ^fg(#bea492)$cmd%"
         elif [ "$cmd" -lt 75 ] && [ "$cmd" -ge 50 ]
         then
-            echo "^fg(#00e600)^i($FOLDER/battery_half.xbm) ^fg(#bea492)$cmd%"
+            echo "^fg(#4c626d)^i($FOLDER/battery_half.xbm) ^fg(#bea492)$cmd%"
         elif [ "$cmd" -lt 50 ] && [ "$cmd" -ge 25 ]
         then
-            echo "^fg(#00e600)^i($FOLDER/battery_quarter.xbm) ^fg(#bea492)$cmd%"
+            echo "^fg(#4c626d)^i($FOLDER/battery_quarter.xbm) ^fg(#bea492)$cmd%"
         elif [ "$cmd" -lt 25 ]
         then
-            echo "^fg(#00e600)^i($FOLDER/battery_ten.xbm) ^fg(#bea492)$cmd%"
+            echo "^fg(#4c626d)^i($FOLDER/battery_ten.xbm) ^fg(#bea492)$cmd%"
         fi
     }
 
@@ -89,7 +89,7 @@ statusbar() {
         echo "^fg(#ae5d5d)^i($FOLDER/vol.xbm) ^fg(#bea492)$volume"
     }
 
-    echo "^pa(0)^ca $(desk) ^ca ^pa(160) $(mpd) ^ca ^pa(1050) ^fg(#282522)| $(mem) ^fg(#282522)| $(pac) ^fg(#282522)| $(battery) ^fg(#282522)| $(vol) ^fg(#282522) $(clock)"
+    echo "^pa(0)^ca $(desk) ^ca ^pa(160) $(mpd) ^ca ^pa(1060) ^fg(#282522)| $(mem) ^fg(#282522)| $(pac) ^fg(#282522)| $(battery) ^fg(#282522)| $(vol) ^fg(#282522)| $(clock)"
 }
 
 stalonetray --geometry 1x1-0+0 --icon-gravity E --grow-gravity E -i 20 -d all -bg '#181512' &
@@ -97,4 +97,4 @@ stalonetray --geometry 1x1-0+0 --icon-gravity E --grow-gravity E -i 20 -d all -b
 while true; do
     echo "$(statusbar)"
     # sleep 0.5
-done | dzen2 -p -dock -title-name panel -e 'button2=;' -bg '#181512' -fn 'Pragmata\ Pro-9' -w 1420 -h 20 &
+done | dzen2 -dock -title-name panel -e 'button2=;' -bg '#181512' -fn 'Pragmata\ Pro-9' -w 1420 -h 20 &

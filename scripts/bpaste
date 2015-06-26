@@ -1,0 +1,116 @@
+#! /bin/bash
+
+if [[ -z $1 ]]; then
+    echo "Argument required." >&2
+    exit 1
+fi
+
+text=$1
+
+if [[ -f $1 ]]; then
+    text=$(cat $1)
+    extension=$(echo ${1#*.} | awk '{ print tolower($0) }')
+
+    case $extension in
+        ada )
+            lexer="ada"
+            ;;
+        as )
+            lexer="as"
+            ;;
+        as3 )
+            lexer="as3"
+            ;;
+        awk )
+            lexer="awk"
+            ;;
+        sh )
+            lexer="bash"
+            ;;
+        bat )
+            lexer="bat"
+            ;;
+        bat )
+            lexer="bat"
+            ;;
+        c | h )
+            lexer="c"
+            ;;
+        cs )
+            lexer="csharp"
+            ;;
+        css )
+            lexer="css"
+            ;;
+        dcu )
+            lexer="delphi"
+            ;;
+        ex )
+            lexer="elixir"
+            ;;
+        erl )
+            lexer="erlang"
+            ;;
+        f | f90 )
+            lexer="fortran"
+            ;;
+        hs )
+            lexer="haskell"
+            ;;
+        htm* )
+            lexer="html"
+            ;;
+        java )
+            lexer="java"
+            ;;
+        js )
+            lexer="js"
+            ;;
+        mat )
+            lexer="matlab"
+            ;;
+        m )
+            lexer="objective-c"
+            ;;
+        pl )
+            lexer="perl"
+            ;;
+        php )
+            lexer="php"
+            ;;
+        ml* )
+            lexer="ocaml"
+            ;;
+        py )
+            lexer="python"
+            ;;
+        pro | p )
+            lexer="prolog"
+            ;;
+        rb )
+            lexer="rb"
+            ;;
+        rs | rlib )
+            lexer="rust"
+            ;;
+        scala )
+            lexer="scala"
+            ;;
+        scss )
+            lexer="scss"
+            ;;
+        tex )
+            lexer="tex"
+            ;;
+        vim )
+            lexer="vim"
+            ;;
+        * )
+            lexer="text"
+            ;;
+    esac
+fi
+
+response=$(curl -F code="$text" -F lexer="$lexer" -F expiry=never https://bpaste.net -s)
+
+echo $response | grep -o -m 1 'https://bpaste.net/show/[a-zA-Z0-9+-]*' | head -n1

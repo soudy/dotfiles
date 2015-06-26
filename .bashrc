@@ -24,7 +24,6 @@ alias se='sudoedit'
 alias bashrc='vim ~/.bashrc'
 alias vimrc='vim ~/.vimrc'
 alias grep='grep --color=auto'
-alias wmap='nmap -sP 192.168.1-255.1-255'
 alias poweroff='sudo poweroff'
 alias mkdir='mkdir -pv'
 alias ls='ls --color=always'
@@ -32,16 +31,12 @@ alias sl='ls'
 alias l='ls'
 alias ll='ls -Alh'
 alias ticktock='watch -n1 "date '+%D%n%T'|figlet -k"'
-alias pcat='pygmentize -O style=native -g'
 alias df='df -H'
-alias merrychristmas='curl climagic\.org/txt/jb.txt|while read -r c n l;do printf "\e[1;${c}m%${COLUMNS}s\e[0m\n" " ";play -q -n synth pl $n trim 0 $l;done '
-alias snow="xsnow -notrees -nosanta -norudolf -snowflakes 1000 -nokeepsnow"
 alias vi="vim"
 alias sudo="sudo "
-alias dual="xrandr --output HDMI1 --mode 1920x1080 --pos 0x0 --rotate normal             \
-            --output VIRTUAL1 --off --output DP1 --off --output eDP1 --off --output VGA1 \
-            --mode 1920x1080 --pos 1920x0 --rotate normal"
 alias locip="ip addr show | grep -E 'inet' | grep -m 1 global | awk '{ print $2}' | sed 's/\/.*//'"
+alias termbin="nc termbin.com 9999"
+alias fuck="fux $(history | tail -n 2 | head -n 1 | awk '{print $2}')"
 #export PS1="\[\e[00;36m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;35m\]\h\[\e[0m\]\[\e[00;37m\] [\[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\]] \[\e[0m\]"
 export PS1="\[\e[00;37m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;35m\]\h\[\e[0m\]\[\e[00;37m\] \[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\] $ \[\e[0m\]"
 
