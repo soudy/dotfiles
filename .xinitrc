@@ -14,6 +14,8 @@ fi
 xset r rate 220 65
 xsetroot -cursor_name left_ptr
 
+mpd &
+nm-applet &
 hsetroot -fill ~/Pictures/Wallpapers/image_17.jpg &
 sxhkd &
 exec bspwm
