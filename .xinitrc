@@ -11,12 +11,19 @@ fi
 [ -f /etc/xprofile  ] && . /etc/xprofile
 [ -f ~/.xprofile  ] && . ~/.xprofile
 
-xset r rate 220 65
-xsetroot -cursor_name left_ptr
+xset +fp /usr/share/fonts/local
+xset fp rehash
 
+xset r rate 220 65 &
+xsetroot -cursor_name left_ptr &
+
+dunst &
+compton &
 mpd &
 nm-applet &
-hsetroot -fill ~/Pictures/wallpapers/image_17.jpg &
-sxhkd &
+# hsetroot -center ~/Pictures/coldflow.jpg &
+hsetroot -tile ~/Pictures/pattern_154.gif &
+sxhkd -f 100 &
+
 exec bspwm
 # exec awesome
