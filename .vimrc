@@ -309,9 +309,6 @@ let NERDSpaceDelims=1
 let g:mta_use_matchparen_group = 0
 let g:mta_set_default_matchtag_color = 0
 
-" disable php folding
-let g:DisableAutoPHPFolding = 1
-
 " powerline
 set laststatus=2
 let g:airline_left_sep=' '

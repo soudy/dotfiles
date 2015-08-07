@@ -1,33 +1,20 @@
 #! /bin/sh
 export PANEL_FIFO=/tmp/panel-fifo
 export PANEL_HEIGHT=24
-#export PANEL_FONT_FAMILY="-*-uushi-medium-r-*--*-90-*-*-*-*-*-*"
-# export PANEL_FONT_FAMILY1="Termsyn:pixelsize=10:antialias=false:hinting=false,Termsyn.icons:size=8"
-#export PANEL_FONT_FAMILY1="Termsyn:size=8"
 export PANEL_FONT_FAMILY1="Pragmata Pro:size=9:antialias=false:hinting=false"
 export PANEL_FONT_FAMILY2="-*-stlarch-*-*-*-*-11-*-*-*-*-*-*-*"
-# export PANEL_FONT_FAMILY2="stlarch"
 export PANEL_FIFO PANEL_HEIGHT PANEL_FONT_FAMILY
 export PATH=$PATH:~/.config/bspwm/panel/
 
 cd ~/.config/bspwm/panel/
 
 tray_clock() {
-	#clock -sf 'S⭧ %a %I: %M'
 	while :; do
 		./clock.sh
-		#echo "⯇ ⯆ ⯈ ⮾ ⮿"
 		sleep 5
 	done
 }
 
-# tray_music() {
-# 	#clock -sf 'S⭧ %a %I: %M'
-# 	./music.sh
-# }
-
-
-#######3
 MUSIC_SCROLLER=""
 LAST_MPC_SONG=""
 LAST_MPC_STATE=""
@@ -38,13 +25,6 @@ tray_music() {
     mpc_song=$(mpc current)
 	# mpc_song="$(playerctl metadata artist 2>/dev/null) - $(playerctl metadata title 2>/dev/null)"
 	icon_phones='⮜'
-	headphones=$(cat ~/.phones)
-
-	if [ $headphones -eq 1 ]; then
-		phones=" "$icon_phones
-	else
-		phones=""
-	fi
 
 	# kill old zscroll so not scrolling over new text
 	if [[ $mpc_song != "$LAST_MPC_SONG" ]] || [[ $mpc_state != "$LAST_MPC_STATE" ]]; then
@@ -57,7 +37,7 @@ tray_music() {
 	if [[ -n $mpc_song ]]; then
 		# if going to be scrolled, add " - " separator
 		if [[ ${#mpc_song} -gt 40 ]]; then
-			mpc_display="$mpc_song -"
+			mpc_display="$mpc_song - "
 		else
 			mpc_display=$mpc_song
 		fi
@@ -150,7 +130,6 @@ bspc control --subscribe > "$PANEL_FIFO" &
 while true; do
 	# scrolling song info (on left)
 	tray_music
-	headphones=$(cat ~/.phones)[]
 	sleep 1
 done &
 

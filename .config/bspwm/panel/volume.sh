@@ -10,14 +10,13 @@ icon_phones=''
 volume=$(amixer sget Master | sed -n "0,/.*\[\([0-9]\+\)%\].*/s//\1/p")
 
 icon=$icon_rest
+muted=$(amixer -c 0 get Master | grep -o off)
 
-if [ $volume -eq 0 ]; then
+if [ $volume -eq 0 ] || [ $muted ]; then
 	icon=$icon_mute
 elif [ $volume -gt 25 ]; then
 	icon=$icon_full
 fi
-
-headphones=$(cat ~/.phones)
 
 if [ $headphones -eq 1 ]; then
 	phones=" "$icon_phones

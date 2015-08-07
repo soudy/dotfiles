@@ -79,26 +79,27 @@ urxvt.color14:#6d715e
 urxvt.color7:#c9c9c9
 urxvt.color15:#c9c9c9
 
-! urxvt*font: xft:berry:size=8
-! urxvt*boldFont: xft:berry:size=8
+! urxvt.font: xft:berry:size=8
+! urxvt.boldFont: xft:berry:size=8
 urxvt.font: xft:Pragmata Pro:size=9
 urxvt.boldFont: xft:Pragmata Pro:size=9:style=bold
 ! urxvt*font: xft:Inconsolata:size=10
 ! urxvt*boldFont: xft:bold:Inconsolata:size=10
-urxvt.letterSpace:-2
-Xft.dpi:96
-Xft.antialias:1
-Xft.hinting:0
-Xft.hintstyle:hintslight
-Xft.autohint:0
-Xft.rgba:rgb
-Xft.lcdfilter:lcddefault
+urxvt.saveLines: 15000
+urxvt.letterSpace: 0
+Xft.dpi: 96
+Xft.antialias: 1
+Xft.hinting: 0
+Xft.hintstyle: hintslight
+Xft.autohint: 0
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
 
 ! clickable urls
-urxvt*matcher.pattern.1:  \\b(mailto|http|https|ftp|file):[/]*[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-urxvt*matcher.pattern.2: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+urxvt.matcher.pattern.1:  \\b(mailto|http|https|ftp|file):[/]*[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+urxvt.matcher.pattern.2: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 urxvt.perl-ext-common: default,matcher,clipboard,font-size
-urxvt.url-launcher:    /usr/bin/firefox
+urxvt.url-launcher: /usr/bin/firefox
 urxvt.matcher.button:  1
 
 ! font change on the fly
