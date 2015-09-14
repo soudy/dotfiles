@@ -75,14 +75,16 @@ urxvt.color12:#535C5C
 urxvt.color5:#775759
 urxvt.color13:#775759
 urxvt.color6:#6d715e
-urxvt.color14:#6d715e
+urxvt.color14:#3c3d39
 urxvt.color7:#c9c9c9
 urxvt.color15:#c9c9c9
 
 ! urxvt.font: xft:berry:size=8
 ! urxvt.boldFont: xft:berry:size=8
-urxvt.font: xft:Pragmata Pro:size=9
-urxvt.boldFont: xft:Pragmata Pro:size=9:style=bold
+! urxvt.font: xft:Pragmata Pro:size=9
+! urxvt.boldFont: xft:Pragmata Pro:size=9:style=bold
+urxvt.font: xft:Hack:size=9
+urxvt.boldFont: xft:Hack:size=9:style=bold
 ! urxvt*font: xft:Inconsolata:size=10
 ! urxvt*boldFont: xft:bold:Inconsolata:size=10
 urxvt.saveLines: 15000

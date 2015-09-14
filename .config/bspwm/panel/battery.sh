@@ -5,7 +5,7 @@ icon_full='%{F#FF66AABB}%{F-}'
 icon_rest='%{F#FF66AABB}%{F-}'
 icon_dead='%{F#FF66AABB}%{F-}'
 #acpinfo=$(acpi -a)
-# 
+#
 
 chg(){
     echo -n  $(acpi --battery | awk '{gsub(/,/, "");} {print $4}')
@@ -16,14 +16,14 @@ chg_per=$(acpi --battery | awk '{gsub(/,/, "");} {print $4}' | sed 's/.$//')
 
 if [ $chg_per -lt 33 ]; then
 	icon=$icon_dead
-elif [ $chg_per -lt 66 ]; then
+elif [ $chg_per -lt 67 ]; then
 	icon=$icon_rest
 elif [ $chg_per -gt 66 ]; then
 	icon=$icon_full
 fi
 
-if acpi -a | grep -q "on-line"; then 
-	#echo -n "⮒ $(chg)%" 
+if acpi -a | grep -q "on-line"; then
+	#echo -n "⮒ $(chg)%"
 	icon=$icon_charge
 	if [ $chg_per -gt 95 ]; then
 		icon=$icon_max

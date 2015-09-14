@@ -19,7 +19,7 @@ let g:colors_name="dc2"
 "
 hi Normal                  ctermfg=none
 hi Boolean                 ctermfg=13
-hi Comment                 ctermfg=8
+hi Comment                 ctermfg=14 cterm=italic
 hi Conditional             ctermfg=11
 hi Constant                ctermfg=3
 hi ColorColumn             ctermbg=0
@@ -44,7 +44,7 @@ hi Entity                  ctermfg=1
 hi Error                   ctermfg=9   ctermbg=7
 hi ErrorMsg                ctermfg=9   ctermbg=none
 hi Exception               ctermfg=1
-hi Float                   ctermfg=14
+hi Float                   ctermfg=6
 hi FoldColumn              ctermfg=6   ctermbg=0
 hi Folded                  ctermfg=6   ctermbg=0
 hi Function                ctermfg=1
@@ -56,15 +56,15 @@ hi LineNr                  ctermfg=8
 hi Macro                   ctermfg=11
 hi MatchParen              ctermfg=0   ctermbg=6
 hi ModeMsg                 ctermfg=3
-hi MoreMsg                 ctermfg=14
+hi MoreMsg                 ctermfg=6
 hi Number                  ctermfg=6
 hi Normal                  ctermfg=7
 hi NonText                 ctermfg=2
 hi Operator                ctermfg=1
 hi PreCondit               ctermfg=10  cterm=none
 hi PreProc                 ctermfg=1
-hi Question                ctermfg=14
-hi Repeat                  ctermfg=14
+hi Question                ctermfg=6
+hi Repeat                  ctermfg=6
 hi Search                  ctermfg=0 ctermbg=15
 hi Support                 ctermfg=1
 hi SpecialChar             ctermfg=13
@@ -73,13 +73,13 @@ hi Special                 ctermfg=7
 hi SpecialKey              ctermfg=10
 hi Statement               ctermfg=4   ctermbg=none
 hi StorageClass            ctermfg=6
-hi String                  ctermfg=4
+hi String                  ctermfg=6
 hi Structure               ctermfg=12
 hi Tag                     ctermfg=9
 hi Title                   ctermfg=7   ctermbg=none cterm=bold
 hi Todo                    ctermfg=10  ctermbg=0
 hi Typedef                 ctermfg=9
-hi Type                    ctermfg=9
+hi Type                    ctermfg=5
 hi Underlined              ctermfg=4 ctermbg=2
 hi VertSplit               ctermfg=none  ctermbg=5
 hi Visual                  ctermfg=none ctermbg=8
@@ -99,7 +99,7 @@ hi StatusPRV               ctermfg=3   ctermbg=0
 hi StatusFTP               ctermfg=4   ctermbg=0
 
 " spellchecking
-hi SpellLocal              ctermfg=7   ctermbg=14  cterm=underline
+hi SpellLocal              ctermfg=7   ctermbg=6  cterm=underline
 hi SpellBad                ctermfg=7  ctermbg=1   cterm=underline
 hi SpellCap                ctermfg=7   ctermbg=12  cterm=underline
 hi SpellRare               ctermfg=7   ctermbg=13  cterm=underline

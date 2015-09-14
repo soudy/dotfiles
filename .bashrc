@@ -26,7 +26,7 @@ alias vimrc='vim ~/.vimrc'
 alias grep='grep --color=auto'
 alias poweroff='sudo poweroff'
 alias mkdir='mkdir -pv'
-alias ls='ls --color=always'
+alias ls='ls --color=always -F'
 alias sl='ls'
 alias l='ls'
 alias ll='ls -Alh'
@@ -55,4 +55,5 @@ shopt -s nocaseglob
 
 unset SSH_ASKPASS
 
-export PATH=~/.gem/ruby/2.2.0/bin/:$PATH
+export GOPATH=$HOME/tech/go
+export PATH=$PATH:$GOPATH/bin:/home/soud/.gem/ruby/2.2.0/bin

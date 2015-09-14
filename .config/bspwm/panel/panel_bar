@@ -30,8 +30,8 @@ while read -r line ; do
 			vol_infos="%{F$COLOR_STATUS_FG}%{B$COLOR_STATUS_BG} ${line#?} %{B-}%{F-}"
 			;;
 		C*)
-			# vol output
-			cpu_temp="${line#?} %{B-}%{F-}"
+			# cpu output
+			cpu_temp="%{F$COLOR_STATUS_FG}%{B$COLOR_STATUS_BG} ${line#?}C %{B-}%{F-}"
 			;;
 
 		B*)
@@ -62,18 +62,18 @@ while read -r line ; do
 				name=${item#?}
 				monocle=$(bspc control --get-status | grep -ci "LM")
 				case $item in
-					# M*)
-						# # active monitor
-						# if [ $num_mon -gt 1 ] ; then
-							# wm_infos="$wm_infos %{F$COLOR_ACTIVE_MONITOR_FG} %{F-}  "
-						# fi
-						# ;;
-					# m*)
-						# # inactive monitor
-						# if [ $num_mon -gt 1 ] ; then
-							# wm_infos="$wm_infos %{F$COLOR_INACTIVE_MONITOR_FG} %{F-}  "
-						# fi
-						# ;;
+                    M*)
+                        # active monitor
+                        if [ $num_mon -gt 1 ] ; then
+                            wm_infos="$wm_infos %{F$COLOR_ACTIVE_MONITOR_FG} %{F-}  "
+                        fi
+                        ;;
+                    m*)
+                        # inactive monitor
+                        if [ $num_mon -gt 1 ] ; then
+                            wm_infos="$wm_infos %{F$COLOR_INACTIVE_MONITOR_FG} %{F-}  "
+                        fi
+                        ;;
 					O*)
 						# focused occupied desktop
 						name=""
