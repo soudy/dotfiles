@@ -29,6 +29,7 @@ set cursorline
 set title
 set autoread
 set completeopt=longest,menuone
+set timeoutlen=500
 
 " wildmenu
 set wildmenu
@@ -102,6 +103,8 @@ au Filetype c,make,cpp setlocal tabstop=8 shiftwidth=8 softtabstop=8
 " tabs for makefiles
 au FileType make setlocal noexpandtab
 
+au FileType php set nocursorline norelativenumber
+
 au! FileType css,scss setlocal iskeyword+=-
 
 " Automatically source vimrc on save.
@@ -116,6 +119,21 @@ au BufReadPost *
 " highlighting
 au BufNewFile,BufRead *.json set ft=javascript
 au BufNewFile,BufRead *.md set ft=markdown spell
+
+" Enable rainbow parentheses when writing lisp.
+au VimEnter *.l,*.cl,*.lsp,*.lisp RainbowParenthesesToggle
+au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadRound
+au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadSquare
+au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadBraces
+
+" Apply a tabwidth of 2 when writing lisp.
+au BufRead,BufNewFile *.l,*.cl,*.lsp,*.lisp set tabstop=4 softtabstop=0 shiftwidth=2
+
+augroup __buffer
+    autocmd FileType help wincmd L | vert resize 80
+    autocmd BufLeave * if &filetype==?'help' | execute 'normal 0' | vert resize 10 | endif
+	autocmd BufEnter * if &filetype==?'help' | execute 'normal 0' | vert resize 80 | endif
+augroup end
 
 "******************************************************************************
 " functions
@@ -296,10 +314,10 @@ if executable('ag')
 
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 else
-  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-  let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
-    \ }
+    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+    let g:ctrlp_prompt_mappings = {
+                \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
+                \ }
 endif
 
 " space after comment
@@ -318,7 +336,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
 " syntastic
-let g:syntastic_mode_map = { 'passive_filetypes': ['c'] }
+let g:syntastic_mode_map = { 'passive_filetypes': ['c', 'go'] }
 let g:syntastic_cpp_compiler_options = " -std=c++11"
 let g:syntastic_javascript_checkers = ['jshint']
 
@@ -344,11 +362,5 @@ let g:pymode_trim_whitespaces = 1
 let g:pymode_options_max_line_length = 79
 let g:pymode_folding = 0
 let g:pymode_lint = 0
-
-" rainbow parentheses
-" au VimEnter * RainbowParenthesesToggle
-" au Syntax * RainbowParenthesesLoadRound
-" au Syntax * RainbowParenthesesLoadSquare
-" au Syntax * RainbowParenthesesLoadBraces
 
 let g:JSLintHighlightErrorLine = 0

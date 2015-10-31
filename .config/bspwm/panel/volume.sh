@@ -25,4 +25,4 @@ else
 fi
 
 #printf "%s %3s%%%%" "$icon" "$volume"
-echo "V %{F#FF66AABB}$icon%{F-} $volume%%{F#FF66AABB}$phones%{F-}%{A}"
+echo "V %{F#FF608190}$icon%{F-} $volume%%{F#FF608190}$phones%{F-}%{A}"

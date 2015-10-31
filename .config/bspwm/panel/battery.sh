@@ -1,9 +1,9 @@
 IFS=@
 icon_charge='%{F#FFFEA63C}%{F-}'
-icon_max='%{F#FF66AABB}%{F-}'
-icon_full='%{F#FF66AABB}%{F-}'
-icon_rest='%{F#FF66AABB}%{F-}'
-icon_dead='%{F#FF66AABB}%{F-}'
+icon_max='%{F#FF608190}%{F-}'
+icon_full='%{F#FF608190}%{F-}'
+icon_rest='%{F#FF608190}%{F-}'
+icon_dead='%{F#FF608190}%{F-}'
 #acpinfo=$(acpi -a)
 #
 

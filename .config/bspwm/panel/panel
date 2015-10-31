@@ -44,18 +44,18 @@ tray_music() {
 
 		if [[ $mpc_state == "[paused]" ]]; then
 			# don't scroll if paused
-			echo "H%{F#FF66AABB}%{F-} mpd paused" > "$PANEL_FIFO"
+			echo "H%{F#FF608190}%{F-} mpd paused" > "$PANEL_FIFO"
 		else
 			# update scroller on song change or state change (e.g. paused to unpaused)
 			if [[ $mpc_song != "$LAST_MPC_SONG" ]] || [[ $mpc_state != "$LAST_MPC_STATE" ]]; then
 				# will only scroll if greater than 40, otherwise will just print in place
-				zscroll -n -b "H%{F#FF66AABB}%{F-} " "$mpc_display" > "$PANEL_FIFO" &
+				zscroll -n -b "H%{F#FF608190}%{F-} " "$mpc_display" > "$PANEL_FIFO" &
 				MUSIC_SCROLLER=$!
 			fi
 		fi
 	else
 		# nothing playing/paused
-		echo "H%{F#FF66AABB}%{F-} -" > "$PANEL_FIFO"
+		echo "H%{F#FF608190}%{F-} -" > "$PANEL_FIFO"
 	fi
 	# save
 	LAST_MPC_SONG=$mpc_song
@@ -65,7 +65,7 @@ tray_music() {
 tray_cpu() {
     while :; do
         temp=$(acpi -t | awk '{print $4}')
-        echo "C  %{F#FF66AABB}%{F-} $temp"
+        echo "C  %{F#FF608190}%{F-} $temp"
 
         sleep .25
     done

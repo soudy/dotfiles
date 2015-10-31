@@ -50,4 +50,4 @@ then
 	icon=""
 fi
 
-echo "N%{F#FF66AABB}$icon%{F-}"
+echo "N%{F#FF608190}$icon%{F-}"

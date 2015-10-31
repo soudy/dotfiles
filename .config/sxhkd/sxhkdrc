@@ -27,7 +27,7 @@ alt + Down
 # music controls
 
 super + c
-    urxvt -g 120x34-160+16 -e ncmpcpp
+    termite -g 120x34-160+16 -e ncmpcpp
 
 ctrl + alt + Right
     mpc next || ncmpcpp next || ncmpc next || pms next
@@ -171,7 +171,7 @@ super + e
     nautilus
 
 super + Return
-    urxvt
+    termite
 
 super + q
     firefox
@@ -183,7 +183,7 @@ super + g
     xset r rate 220 65 &
 
 super + r
-    rofi -show run -terminal urxvt -font 'Fira Mono 16' -lines 4 -eh 1.5  \
+    rofi -show run -terminal termite -font 'Fira Mono 16' -lines 4 -eh 1.5  \
     -width 100 -height 100 -padding 600 -opacity "85" -bw 0 -bc "#161616" -bg "#161616" -fg "#cccccc" -hlbg "#191919" -hlfg "#cccccc"
 
 # make sxhkd reload its configuration files:
