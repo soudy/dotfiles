@@ -97,9 +97,6 @@ let &titleold=getcwd()
 " auto commands
 "******************************************************************************
 
-" 8 tabs for makefiles and C
-au Filetype c,make,cpp setlocal tabstop=8 shiftwidth=8 softtabstop=8
-
 " tabs for makefiles
 au FileType make setlocal noexpandtab
 
@@ -128,12 +125,6 @@ au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadBraces
 
 " Apply a tabwidth of 2 when writing lisp.
 au BufRead,BufNewFile *.l,*.cl,*.lsp,*.lisp set tabstop=4 softtabstop=0 shiftwidth=2
-
-augroup __buffer
-    autocmd FileType help wincmd L | vert resize 80
-    autocmd BufLeave * if &filetype==?'help' | execute 'normal 0' | vert resize 10 | endif
-	autocmd BufEnter * if &filetype==?'help' | execute 'normal 0' | vert resize 80 | endif
-augroup end
 
 "******************************************************************************
 " functions

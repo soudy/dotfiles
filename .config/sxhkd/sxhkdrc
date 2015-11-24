@@ -27,7 +27,7 @@ alt + Down
 # music controls
 
 super + c
-    termite -g 120x34-160+16 -e ncmpcpp
+    termite -e ncmpcpp
 
 ctrl + alt + Right
     mpc next || ncmpcpp next || ncmpc next || pms next

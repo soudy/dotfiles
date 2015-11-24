@@ -1,6 +1,5 @@
 # .bashrc
 export EDITOR=vim
-export TERMINAL=urxvt
 export BROWSER=firefox
 export PAGER=most
 
