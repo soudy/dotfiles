@@ -1,0 +1,41 @@
+[options]
+font = Monospace 9
+scroll_on_output    = false
+scroll_on_keystroke = true
+audible_bell        = false
+mouse_autohide      = false
+allow_bold          = true
+dynamic_title       = true
+urgent_on_bell      = true
+clickable_url       = true
+scrollback_lines    = 12800
+search_wrap         = true
+
+# If you want the cursor to blink or not ("off", "on").
+cursor_blink = off
+
+# ("block", "underline" or "ibeam").
+cursor_shape = block
+
+# Set size hints for the window
+size_hints   = true
+
+[colors]
+foreground=#DDDDDD
+background=#2D2D2D
+color0=#393939
+color8=#474747
+color1=#EE9379
+color9=#FF8D80
+color2=#E2FFC7
+color10=#DBFFB3
+color3=#FFFFB9
+color11=#FFBE64
+color4=#EDE7B4
+color12=#E15848
+color5=#E2BEB5
+color13=#94C7B5
+color6=#91C2A2
+color14=#A2C3CC
+color7=#ffffff
+color15=#dddddd

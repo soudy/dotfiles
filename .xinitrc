@@ -11,7 +11,6 @@ fi
 [ -f /etc/xprofile ] && . /etc/xprofile
 [ -f ~/.xprofile ] && . ~/.xprofile
 
-# setxkbmap -option caps:swapescape
 xset +fp /usr/share/fonts/local
 xset fp rehash
 
