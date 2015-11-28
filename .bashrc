@@ -1,12 +1,6 @@
-# .bashrc
 export EDITOR=vim
 export BROWSER=firefox
-export PAGER=most
-
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
-fi
+export PAGER=less
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
