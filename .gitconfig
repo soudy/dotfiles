@@ -1,0 +1,17 @@
+[user]
+    email = soud@protonmail.com
+    name = "Steven Oud"
+[alias]
+    st = status
+    co = checkout
+    di = diff
+    dc = diff --cached
+    amend = commit --amend
+    aa = add --all
+    fa = fetch --all
+    pom = push origin master
+    b = branch
+    ds = diff --stat=160,120
+    dh1 = diff HEAD~1
+[push]
+    default = simple
