@@ -117,15 +117,6 @@ au BufReadPost *
 au BufNewFile,BufRead *.json set ft=javascript
 au BufNewFile,BufRead *.md set ft=markdown spell
 
-" Enable rainbow parentheses when writing lisp.
-au VimEnter *.l,*.cl,*.lsp,*.lisp RainbowParenthesesToggle
-au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadRound
-au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadSquare
-au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadBraces
-
-" Apply a tabwidth of 2 when writing lisp.
-au BufRead,BufNewFile *.l,*.cl,*.lsp,*.lisp set tabstop=4 softtabstop=0 shiftwidth=2
-
 "******************************************************************************
 " functions
 "******************************************************************************
@@ -299,24 +290,8 @@ cnoremap X) x
 " plugins settins
 "******************************************************************************
 
-let g:ctrlp_use_caching = 0
-if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor
-
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-else
-    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-    let g:ctrlp_prompt_mappings = {
-                \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
-                \ }
-endif
-
 " space after comment
 let NERDSpaceDelims=1
-
-" matchtag custom color
-let g:mta_use_matchparen_group = 0
-let g:mta_set_default_matchtag_color = 0
 
 " powerline
 set laststatus=2
@@ -333,14 +308,7 @@ let g:syntastic_javascript_checkers = ['jshint']
 
 let g:snips_author="soud"
 let g:email="soud@protonmail.com"
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-" neocomplete
-let g:neocomplete#enable_at_startup = 0
-" let g:neocomplete#enable_smart_case = 1
-
+"
 " pymode
 let g:pymode = 1
 let g:pymode_syntax_all = 1
@@ -353,5 +321,3 @@ let g:pymode_trim_whitespaces = 1
 let g:pymode_options_max_line_length = 79
 let g:pymode_folding = 0
 let g:pymode_lint = 0
-
-let g:JSLintHighlightErrorLine = 0

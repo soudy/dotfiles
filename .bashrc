@@ -1,5 +1,5 @@
 export EDITOR=vim
-export BROWSER=firefox
+export BROWSER=chromium
 export PAGER=less
 
 # If not running interactively, don't do anything
@@ -16,10 +16,9 @@ export PS1="[\u:\[$(tput sgr0)\]\[\033[38;5;1m\]\w\[$(tput sgr0)\]\[\033[38;5;15
 shopt -s histappend
 
 # don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
 HISTCONTROL=ignoreboth
 
-# Use case-insensitive filename globbing
+# use case-insensitive filename globbing
 shopt -s nocaseglob
 
 eval $(dircolors ~/.dircolors)
@@ -27,4 +26,4 @@ eval $(dircolors ~/.dircolors)
 unset SSH_ASKPASS
 
 export GOPATH=$HOME/tech/go
-export PATH=$PATH:$GOPATH/bin:/home/soud/.gem/ruby/2.2.0/bin
+export PATH=$PATH:"$GOPATH/bin":/home/soud/.gem/ruby/2.2.0/bin:"$HOME/.composer/vendor/bin/"
