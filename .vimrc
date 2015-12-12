@@ -121,6 +121,16 @@ au BufNewFile,BufRead *.md set ft=markdown spell
 " functions
 "******************************************************************************
 
+" Indent if we're at the beginning of a line. Else, do completion.
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+
 " switching between number mode
 function! ToggleNumberMode()
     if &relativenumber == 1
@@ -156,6 +166,8 @@ let mapleader = "\<Space>"
 
 inoremap <silent>j <C-R>=OmniPopup('j')<CR>
 inoremap <silent>k <C-R>=OmniPopup('k')<CR>
+
+inoremap <expr> <tab> InsertTabWrapper()
 
 " maps
 noremap 0 ^
@@ -306,7 +318,6 @@ let g:syntastic_mode_map = { 'passive_filetypes': ['c', 'go'] }
 let g:syntastic_cpp_compiler_options = " -std=c++11"
 let g:syntastic_javascript_checkers = ['jshint']
 
-let g:snips_author="soud"
 let g:email="soud@protonmail.com"
 "
 " pymode
