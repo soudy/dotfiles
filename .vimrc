@@ -23,7 +23,6 @@ set showcmd
 set softtabstop=4
 set backspace=eol,start,indent
 set colorcolumn=80
-set noshowmode
 set sj=-50
 set cursorline
 set title
@@ -63,7 +62,7 @@ set formatoptions=trqlcj
 set directory=~/.vim/swap,~/tmp,.
 set noswapfile
 
-"backup
+" backup
 set backup
 set backupdir=~/.vim/backup
 set directory=~/.vim/tmp
@@ -71,7 +70,7 @@ set directory=~/.vim/tmp
 " use system clipboard by default
 set clipboard=unnamed
 
-" enable utf8
+" use utf8
 set encoding=utf8
 set termencoding=utf-8
 
@@ -172,16 +171,10 @@ inoremap <expr> <tab> InsertTabWrapper()
 " maps
 noremap 0 ^
 noremap ^ 0
-nnoremap <C-o> :NERDTreeToggle<cr>
 map Y y$
 nnoremap Z :bprev<cr>
 nnoremap X :bnext<cr>
-nnoremap <M-Z> :tabprev<cr>
-nnoremap <M-X> :tabnext<cr>
 imap <C-BS> <C-W>
-
-" switch to pwd
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 map <C-k> ddkP
 map <C-j> ddp
@@ -223,6 +216,7 @@ noremap : ;
 " surrounds
 map <Leader>s ysiw
 
+" clear highlighting with return
 nnoremap <CR> :noh<CR>
 
 " write to read only file
@@ -249,9 +243,6 @@ nnoremap <Leader>D "_D
 nnoremap <Leader>C "_C
 nnoremap <Leader>c "_c
 nnoremap <Leader>x "_x
-
-" taglist
-nnoremap <F3> :TlistToggle<cr>
 
 " resizing
 noremap <up>    <C-W>+
@@ -305,8 +296,7 @@ cnoremap X) x
 " space after comment
 let NERDSpaceDelims=1
 
-" powerline
-set laststatus=2
+" airline
 let g:airline_left_sep=' '
 let g:airline_right_sep=' '
 let g:airline_theme='simple'
@@ -319,7 +309,7 @@ let g:syntastic_cpp_compiler_options = " -std=c++11"
 let g:syntastic_javascript_checkers = ['jshint']
 
 let g:email="soud@protonmail.com"
-"
+
 " pymode
 let g:pymode = 1
 let g:pymode_syntax_all = 1
