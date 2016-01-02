@@ -4,7 +4,7 @@
 " Hex colour conversion functions borrowed from the theme "Desert256""
 
 " Default GUI Colours
-let s:foreground = "c5c8c6"
+let s:foreground = "f0f0f0"
 let s:background = "1d1f21"
 let s:selection = "373b41"
 let s:line = "282a2e"
@@ -276,9 +276,10 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("Todo", s:comment, s:background, "")
 	call <SID>X("Title", s:comment, "", "")
 	call <SID>X("Identifier", s:red, "", "none")
-	call <SID>X("Statement", s:foreground, "", "")
+	call <SID>X("Statement", s:yellow, "", "")
 	call <SID>X("Conditional", s:foreground, "", "")
-	call <SID>X("Repeat", s:foreground, "", "")
+	call <SID>X("Repeat", s:red, "", "")
+	call <SID>X("Label", s:blue, "", "")
 	call <SID>X("Structure", s:purple, "", "")
 	call <SID>X("Function", s:blue, "", "")
 	call <SID>X("Constant", s:orange, "", "")
@@ -287,7 +288,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("Special", s:foreground, "", "")
 	call <SID>X("PreProc", s:purple, "", "")
 	call <SID>X("Operator", s:aqua, "", "none")
-	call <SID>X("Type", s:blue, "", "none")
+	call <SID>X("Type", s:aqua, "", "none")
 	call <SID>X("Define", s:purple, "", "none")
 	call <SID>X("Include", s:blue, "", "")
 	"call <SID>X("Ignore", "666666", "", "")
