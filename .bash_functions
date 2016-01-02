@@ -47,3 +47,7 @@ function man {
 		LESS_TERMCAP_us=$(printf "\e[1;32m") \
         man "$@"
 }
+
+function temp {
+    vim +"set buftype=nofile bufhidden=wipe nobuflisted noswapfile tw=${1:-0}"
+}
