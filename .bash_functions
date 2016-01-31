@@ -51,3 +51,7 @@ function man {
 function temp {
     vim +"set buftype=nofile bufhidden=wipe nobuflisted noswapfile tw=${1:-0}"
 }
+
+function git_branch {
+    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}

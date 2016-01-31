@@ -10,8 +10,6 @@ export PAGER=less
 [[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
 [[ -f ~/.bash_functions ]] && . ~/.bash_functions
 
-export PS1="[\u:\[$(tput sgr0)\]\[\033[38;5;1m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]]\\$ \[$(tput sgr0)\]"
-
 # append to the history file, don't overwrite it
 shopt -s histappend
 
@@ -25,5 +23,6 @@ eval $(dircolors ~/.dircolors)
 
 unset SSH_ASKPASS
 
+export PS1="\u:\[$(tput sgr0)\]\[\033[38;5;1m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[36;5;1m\]\$(git_branch)\[$(tput sgr0)\]$ "
 export GOPATH=$HOME/tech/go
 export PATH=$PATH:"$GOPATH/bin":/home/soud/.gem/ruby/2.2.0/bin:"$HOME/.composer/vendor/bin/"
