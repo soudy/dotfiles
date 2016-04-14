@@ -157,6 +157,25 @@ function! OmniPopup(action)
     return a:action
 endfunction
 
+inoremap ; <Esc>:call <SID>InsSemiColon()<CR>
+function! <SID>InsSemiColon() abort
+    let l:line = line('.')
+    let l:content = getline('.')
+    let l:eol = ';'
+    " If the line ends with a semicolon we simply insert one.
+    if l:content[col('$') - 2] ==# ';'
+        normal! a;
+        normal! l
+        startinsert
+    else
+        if search('(', 'bcn', l:line)
+            let l:eol = search(')', 'cn', l:line) ?  ';' : ');'
+        endif
+        call setline(l:line, l:content . l:eol)
+        startinsert!
+    endif
+endfunction
+
 "******************************************************************************
 " mappings
 "******************************************************************************
