@@ -1,10 +1,10 @@
 "******************************************************************************
 " basic settings
 "******************************************************************************
-
 syntax enable
 filetype plugin indent on
 
+set t_Co=256
 set nocompatible
 set autoindent
 set hidden
@@ -16,7 +16,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set number
-set relativenumber
+set number
 set ttyfast
 set lazyredraw
 set showcmd
@@ -29,6 +29,7 @@ set title
 set autoread
 set completeopt=longest,menuone
 set timeoutlen=500
+set laststatus=2
 
 " wildmenu
 set wildmenu
@@ -44,10 +45,10 @@ set wildignore+=*.luac
 set wildignore+=migrations
 set wildignore+=*.pyc
 set wildignore+=*.orig
-set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+set wildignore+=*/.bundle/*,*/.sass-cache/*
 set wildignore+=*/tmp/cache/assets/*/sprockets/*,*/tmp/cache/assets/*/sass/*
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-set wildignore+=node_modules/*
+set wildignore+=*/node_modules,*/.vagrant,*/vendor
 
 " new splits default to right, or below
 set splitbelow
@@ -62,7 +63,7 @@ set formatoptions=trqlcj
 set directory=~/.vim/swap,~/tmp,.
 set noswapfile
 
-" backup
+"backup
 set backup
 set backupdir=~/.vim/backup
 set directory=~/.vim/tmp
@@ -70,7 +71,7 @@ set directory=~/.vim/tmp
 " use system clipboard by default
 set clipboard=unnamed
 
-" use utf8
+" enable utf8
 set encoding=utf8
 set termencoding=utf-8
 
@@ -89,21 +90,29 @@ set undoreload=10000         " number of lines to save for undo
 " enable pathogen
 call pathogen#infect()
 
-colorscheme dc2
+colorscheme tnight
 let &titleold=getcwd()
 
 "******************************************************************************
 " auto commands
 "******************************************************************************
 
+" enable rainbow parentheses when writing lisp.
+au VimEnter *.l,*.cl,*.lsp,*.lisp RainbowParenthesesToggle
+au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadRound
+au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadSquare
+au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadBraces
+
+au BufRead,BufNewFile *.l,*.cl,*.lsp,*.lisp set softtabstop=2 shiftwidth=2
+
 " tabs for makefiles
 au FileType make setlocal noexpandtab
 
-au FileType php set nocursorline norelativenumber
+au FileType php,vim set nocursorline norelativenumber
 
 au! FileType css,scss setlocal iskeyword+=-
 
-" Automatically source vimrc on save.
+" automatically source vimrc on save.
 au! bufwritepost $MYVIMRC source $MYVIMRC
 
 " return to last edit position when opening file
@@ -113,12 +122,29 @@ au BufReadPost *
             \ endif
 
 " highlighting
-au BufNewFile,BufRead *.json set ft=javascript
 au BufNewFile,BufRead *.md set ft=markdown spell
+
+" recalculate trailing white space indicater when idle and after saving
+augroup statline_trail
+  autocmd!
+  autocmd cursorhold,bufwritepost * unlet! b:statline_trailing_space_warning
+augroup END
 
 "******************************************************************************
 " functions
 "******************************************************************************
+
+function! TrailingSpaceWarning()
+    if !exists("b:statline_trailing_space_warning")
+        let lineno = search('\s$', 'nw')
+        if lineno != 0
+            let b:statline_trailing_space_warning = '[trailing:'.lineno.']'
+        else
+            let b:statline_trailing_space_warning = ''
+        endif
+    endif
+    return b:statline_trailing_space_warning
+endfunction
 
 " Indent if we're at the beginning of a line. Else, do completion.
 function! InsertTabWrapper()
@@ -157,35 +183,16 @@ function! OmniPopup(action)
     return a:action
 endfunction
 
-inoremap ; <Esc>:call <SID>InsSemiColon()<CR>
-function! <SID>InsSemiColon() abort
-    let l:line = line('.')
-    let l:content = getline('.')
-    let l:eol = ';'
-    " If the line ends with a semicolon we simply insert one.
-    if l:content[col('$') - 2] ==# ';'
-        normal! a;
-        normal! l
-        startinsert
-    else
-        if search('(', 'bcn', l:line)
-            let l:eol = search(')', 'cn', l:line) ?  ';' : ');'
-        endif
-        call setline(l:line, l:content . l:eol)
-        startinsert!
-    endif
-endfunction
-
 "******************************************************************************
 " mappings
 "******************************************************************************
 
 let mapleader = "\<Space>"
 
+inoremap <expr> <tab> InsertTabWrapper()
+
 inoremap <silent>j <C-R>=OmniPopup('j')<CR>
 inoremap <silent>k <C-R>=OmniPopup('k')<CR>
-
-inoremap <expr> <tab> InsertTabWrapper()
 
 " maps
 noremap 0 ^
@@ -193,7 +200,13 @@ noremap ^ 0
 map Y y$
 nnoremap Z :bprev<cr>
 nnoremap X :bnext<cr>
+nnoremap <M-Z> :tabprev<cr>
+nnoremap <M-X> :tabnext<cr>
 imap <C-BS> <C-W>
+noremap <Leader>q :bw!<cr>
+
+" switch to pwd
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 map <C-k> ddkP
 map <C-j> ddp
@@ -203,10 +216,10 @@ inoremap <C-a> <C-o>0
 inoremap <C-e> <C-o>$
 
 " toggle spell check
-nnoremap <leader>sc :setlocal spell!<cr>
+nnoremap <Leader>sc :setlocal spell!<cr>
 
 " tabular
-nnoremap <leader>t :Tab /=<cr>
+nnoremap <Leader>t :Tab /=<cr>
 
 " disable Ex mode and help
 noremap <F1> <nop>
@@ -235,7 +248,7 @@ noremap : ;
 " surrounds
 map <Leader>s ysiw
 
-" clear highlighting with return
+" reset hightlighted text
 nnoremap <CR> :noh<CR>
 
 " write to read only file
@@ -308,26 +321,27 @@ cnoremap W) w
 cnoremap x) x
 cnoremap X) x
 
+" switch through windows with tab and shift tab
+nmap <Tab> <C-W>w
+nmap <S-Tab> <C-W>W
+
 "******************************************************************************
 " plugins settins
 "******************************************************************************
 
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_regexp = 1
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+
 " space after comment
 let NERDSpaceDelims=1
 
-" airline
-let g:airline_left_sep=' '
-let g:airline_right_sep=' '
-let g:airline_theme='simple'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
+" ultisnips
+let g:UltiSnipsExpandTrigger = "<c-@>"
+let g:UltiSnipsJumpForwardTrigger = "<c-n>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-p>"
 
-" syntastic
-let g:syntastic_mode_map = { 'passive_filetypes': ['c', 'go'] }
-let g:syntastic_cpp_compiler_options = " -std=c++11"
-let g:syntastic_javascript_checkers = ['jshint']
-
-let g:email="soud@protonmail.com"
+let g:email = "soud@protonmail.com"
 
 " pymode
 let g:pymode = 1
@@ -341,3 +355,55 @@ let g:pymode_trim_whitespaces = 1
 let g:pymode_options_max_line_length = 79
 let g:pymode_folding = 0
 let g:pymode_lint = 0
+
+let g:multi_cursor_exit_from_visual_mode = 0
+let g:multi_cursor_exit_from_insert_mode = 0
+
+" highlight trailing whitespace
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+" go
+let g:go_fmt_command = "goimports"
+
+" rainbow parentheses
+let g:rbpt_colorpairs = [
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ]
+
+" statusbar
+hi clear StatusLine
+hi clear StatusLineNC
+hi StatusLine   term=bold cterm=bold ctermfg=White ctermbg=8
+
+" highlight values in statusbar
+hi User1                      ctermfg=4  ctermbg=8 " Identifier
+hi User2 cterm=bold           ctermfg=2  ctermbg=8 " Statement
+hi User3 term=bold cterm=bold ctermfg=1  ctermbg=8 " Error
+hi User4                      ctermfg=1  ctermbg=8 " Special
+hi User5                      ctermfg=10 ctermbg=8 " Comment
+hi User6 term=bold cterm=bold ctermfg=1  ctermbg=8 " WarningMsg
+
+set statusline=
+set statusline+=%6*%m%r%*                          " modified, readonly
+set statusline+=\ 
+set statusline+=%5*%{expand('%:h')}/               " relative path to file's directory
+set statusline+=%1*%t%*                            " file name
+set statusline+=\ 
+set statusline+=%=                                 " switch to RHS
+
+set statusline+=\ 
+set statusline+=\ 
+set statusline+=%5*%L\ lines%*                     " number of lines
+set statusline+=\ 
+set statusline+=%3*%{TrailingSpaceWarning()}%*     " trailing whitespace
+set statusline+=\ 

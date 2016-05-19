@@ -30,9 +30,9 @@ function ix {
 
 function venv {
     if [[ ! -d ./env ]]; then
-        virtualenv --no-site-packages ./env
+        virtualenv ./env "$@"
     else
-        . env/bin/activate
+        . env/bin/activate "$@"
     fi
 }
 
@@ -48,10 +48,33 @@ function man {
         man "$@"
 }
 
-function temp {
-    vim +"set buftype=nofile bufhidden=wipe nobuflisted noswapfile tw=${1:-0}"
-}
-
 function git_branch {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+function n {
+    nautilus . &> /dev/null &
+    disown
+}
+
+function tunnel {
+    sshuttle -r "$1" 0/0 -vv
+}
+
+function tunnel_dns {
+    sshuttle --dns -r "$1" 0/0 -vv
+}
+
+function play {
+    youtube-dl ytsearch:"$@" -q \
+        --ignore-config \
+        --console-title \
+        --print-traffic \
+        --max-downloads 1 \
+        --no-call-home \
+        --no-playlist -o - | mpv --no-terminal --force-window --cache=256 -
+}
+
+function g {
+    cd ~/tech/go/src/github.com/soudy/"$@"
 }
