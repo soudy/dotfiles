@@ -76,5 +76,5 @@ function play {
 }
 
 function g {
-    cd ~/tech/go/src/github.com/soudy/"$@"
+    cd ~/go/src/github.com/soudy/"$@"
 }

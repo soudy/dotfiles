@@ -1,17 +1,36 @@
 [user]
-    email = soud@protonmail.com
-    name = "Steven Oud"
+	name = Steven Oud
+	email = soud@protonmail.com
+[push]
+	default = current
 [alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset %Cblue<%ae>%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
     st = status
+    c = commit -m
+    ci = commit
     co = checkout
+    cp = cherry-pick
     di = diff
     dc = diff --cached
     amend = commit --amend
+    mff = merge --no-ff
     aa = add --all
     fa = fetch --all
     pom = push origin master
     b = branch
     ds = diff --stat=160,120
     dh1 = diff HEAD~1
-[push]
-    default = simple
+	d = difftool
+[apply]
+    whitespace = fix
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
+[credential]
+	helper = cache --timeout 3600

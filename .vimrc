@@ -31,24 +31,7 @@ set completeopt=longest,menuone
 set timeoutlen=500
 set laststatus=2
 
-" wildmenu
-set wildmenu
-set wildmode=list:longest,full
-set wildignore+=.hg,.git,.svn
-set wildignore+=*.aux,*.out,*.toc
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest
-set wildignore+=*.spl
-set wildignore+=*.sw?
-set wildignore+=*.DS_Store
-set wildignore+=*.luac
-set wildignore+=migrations
-set wildignore+=*.pyc
-set wildignore+=*.orig
-set wildignore+=*/.bundle/*,*/.sass-cache/*
-set wildignore+=*/tmp/cache/assets/*/sprockets/*,*/tmp/cache/assets/*/sass/*
-set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-set wildignore+=*/node_modules,*/.vagrant,*/vendor
+set clipboard=unnamed
 
 " new splits default to right, or below
 set splitbelow
@@ -68,9 +51,6 @@ set backup
 set backupdir=~/.vim/backup
 set directory=~/.vim/tmp
 
-" use system clipboard by default
-set clipboard=unnamed
-
 " enable utf8
 set encoding=utf8
 set termencoding=utf-8
@@ -86,6 +66,25 @@ set undofile                 " Save undo's after file closes
 set undodir=~/.vim/undo,/tmp " where to save undo histories
 set undolevels=1000          " How many undos
 set undoreload=10000         " number of lines to save for undo
+
+" wildmenu
+set wildmenu
+set wildmode=list:longest,full
+set wildignore+=.hg,.git,.svn
+set wildignore+=*.aux,*.out,*.toc
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest
+set wildignore+=*.spl
+set wildignore+=*.sw?
+set wildignore+=*.DS_Store
+set wildignore+=*.luac
+set wildignore+=migrations
+set wildignore+=*.pyc
+set wildignore+=*.orig
+set wildignore+=*/.bundle/*,*/.sass-cache/*
+set wildignore+=*/tmp/cache/assets/*/sprockets/*,*/tmp/cache/assets/*/sass/*
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+set wildignore+=/node_modules,/.vagrant,/vendor
 
 " enable pathogen
 call pathogen#infect()
@@ -103,17 +102,18 @@ au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadRound
 au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadSquare
 au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadBraces
 
-au BufRead,BufNewFile *.l,*.cl,*.lsp,*.lisp set softtabstop=2 shiftwidth=2
+au BufRead,BufNewFile *.l,*.cl,*.lsp,*.lisp,*.rb,*.erb,*.sh,*.ex,*.exs,*.er
+  \ set softtabstop=2 shiftwidth=2
 
 " tabs for makefiles
 au FileType make setlocal noexpandtab
 
 au FileType php,vim set nocursorline norelativenumber
 
-au! FileType css,scss setlocal iskeyword+=-
+au FileType css,scss setlocal iskeyword+=-
 
 " automatically source vimrc on save.
-au! bufwritepost $MYVIMRC source $MYVIMRC
+au bufwritepost $MYVIMRC source $MYVIMRC
 
 " return to last edit position when opening file
 au BufReadPost *
@@ -158,16 +158,16 @@ endfunction
 
 " switching between number mode
 function! ToggleNumberMode()
-    if &relativenumber == 1
+    if &number == 0
         set norelativenumber
         set number
         echo "normal numbering"
-        " elseif &number == 1
-        " set nonumber
-        " echo "numbering off"
-    else
-        set relativenumber
-        echo "relative numbering"
+    elseif &number == 1
+        set nonumber
+        echo "numbering off"
+    " else
+        " set relativenumber
+        " echo "relative numbering"
     endif
     return
 endfunc
@@ -202,8 +202,11 @@ nnoremap Z :bprev<cr>
 nnoremap X :bnext<cr>
 nnoremap <M-Z> :tabprev<cr>
 nnoremap <M-X> :tabnext<cr>
-imap <C-BS> <C-W>
+map <C-BS> <C-W>
 noremap <Leader>q :bw!<cr>
+
+" select last pasted
+nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " switch to pwd
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
@@ -223,7 +226,7 @@ nnoremap <Leader>t :Tab /=<cr>
 
 " disable Ex mode and help
 noremap <F1> <nop>
-nnoremap Q :bw<cr>
+nnoremap Q :bd<cr>
 
 " reselect after indenting selection
 vnoremap < <gv
@@ -264,10 +267,6 @@ nnoremap <Leader>b =iB
 nnoremap <f6> :call ToggleNumberMode()<cr>
 vnoremap <f6> :call ToggleNumberMode()<cr>
 inoremap <f6> <c-o>:call ToggleNumberMode()<cr>
-
-" system clipboard pasting
-nnoremap <Leader>y :call system('xclip', @0)<cr>
-nnoremap <Leader>p "*p
 
 " deleting without saving to default register
 nnoremap <Leader>d "_d
@@ -329,9 +328,18 @@ nmap <S-Tab> <C-W>W
 " plugins settins
 "******************************************************************************
 
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+if executable('ag')
+    " use ag over grep
+    set grepprg=ag\ --nogroup\ --nocolor
+
+    " use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+    let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+
+    " ag is fast enough that CtrlP doesn't need to cache
+    let g:ctrlp_use_caching = 1
+endif
+
 let g:ctrlp_regexp = 1
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 
 " space after comment
 let NERDSpaceDelims=1
@@ -356,6 +364,7 @@ let g:pymode_options_max_line_length = 79
 let g:pymode_folding = 0
 let g:pymode_lint = 0
 
+" multi-cursor
 let g:multi_cursor_exit_from_visual_mode = 0
 let g:multi_cursor_exit_from_insert_mode = 0
 
@@ -399,10 +408,12 @@ set statusline+=\
 set statusline+=%5*%{expand('%:h')}/               " relative path to file's directory
 set statusline+=%1*%t%*                            " file name
 set statusline+=\ 
+set statusline+=%5*%y%*
 set statusline+=%=                                 " switch to RHS
 
 set statusline+=\ 
 set statusline+=\ 
+set statusline+=%1*%p%%\ %*                        " percentage through file
 set statusline+=%5*%L\ lines%*                     " number of lines
 set statusline+=\ 
 set statusline+=%3*%{TrailingSpaceWarning()}%*     " trailing whitespace

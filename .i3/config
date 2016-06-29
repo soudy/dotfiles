@@ -8,6 +8,8 @@ for_window [class="Nitrogen"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="Shotwell"] floating enable
 for_window [class="Evince"] floating enable
+for_window [class="Gpick"] floating enable
+for_window [class="Pavucontrol"] floating enable
 
 # 1px Border Windows
 for_window [class=".*"] border pixel 1
@@ -25,6 +27,9 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec termite
+
+# ncmpcpp
+bindsym $mod+c exec termite -e ncmpcpp
 
 # file manager
 bindsym $mod+e exec nautilus
@@ -137,8 +142,7 @@ bindsym Mod1+l exec locki3
 bindsym Control+Shift+3 exec imgur-screenshot
 
 # Colors
-
-#name                   #top    #border #text
+# name                  #top    #border #text
 client.focused          #747C84 #F3F4F5 #747C84 #F3F4F5
 client.unfocused        #747C84 #747C84 #F3F4F5 #747C84
 client.focused_inactive #747C84 #747C84 #F3F4F5 #747C84
@@ -148,7 +152,7 @@ exec --no-startup-id nitrogen --restore
 
 # Start i3bar
 bar {
-    status_command i3status -c ~/.i3/i3status.conf
+    status_command py3status -c ~/.i3/i3status.conf -i ~/.i3/py3status
     # strip_workspace_numbers yes
     # tray_output none
     position top
