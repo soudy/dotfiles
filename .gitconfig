@@ -7,6 +7,7 @@
 	lg = log --graph --pretty=format:'%Cred%h%Creset %Cblue<%ae>%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
     st = status
     c = commit -m
+    ca = !git add -A && git commit -av
     ci = commit
     co = checkout
     cp = cherry-pick
