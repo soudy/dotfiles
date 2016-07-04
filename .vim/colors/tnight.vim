@@ -29,7 +29,7 @@ end
 hi clear
 syntax reset
 
-let g:colors_name = "Tomorrow-Night"
+let g:colors_name = "tnight"
 
 if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	" Returns an approximate grey index for the given grey level
@@ -241,14 +241,16 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 
 	" Vim Highlighting
 	call <SID>X("Normal", s:foreground, s:background, "")
+	call <SID>X("ExtraWhitespace", s:red, s:red, "")
 	call <SID>X("LineNr", s:selection, "", "")
 	call <SID>X("NonText", s:selection, "", "")
 	call <SID>X("SpecialKey", s:selection, "", "")
 	call <SID>X("Search", s:background, s:yellow, "")
 	call <SID>X("TabLine", s:window, s:foreground, "reverse")
 	call <SID>X("TabLineFill", s:window, s:foreground, "reverse")
-	call <SID>X("StatusLine", s:window, s:yellow, "reverse")
-	call <SID>X("StatusLineNC", s:window, s:foreground, "reverse")
+	call <SID>X("TabLineSel", s:foreground, s:background, "reverse")
+    call <SID>X("StatusLine", s:window, s:yellow, "reverse")
+    call <SID>X("StatusLineNC", s:window, s:foreground, "reverse")
 	call <SID>X("VertSplit", s:window, s:window, "none")
 	call <SID>X("Visual", "", s:selection, "")
 	call <SID>X("Directory", s:blue, "", "")
@@ -256,7 +258,8 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("MoreMsg", s:green, "", "")
 	call <SID>X("Question", s:green, "", "")
 	call <SID>X("WarningMsg", s:red, "", "")
-	call <SID>X("MatchParen", "", s:selection, "")
+	call <SID>X("SpellBad", s:foreground, s:red, "")
+	call <SID>X("MatchParen", "", s:window, "")
 	call <SID>X("Folded", s:comment, s:background, "")
 	call <SID>X("FoldColumn", "", s:background, "")
 	if version >= 700
@@ -277,7 +280,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("Title", s:comment, "", "")
 	call <SID>X("Identifier", s:red, "", "none")
 	call <SID>X("Statement", s:yellow, "", "")
-	call <SID>X("Conditional", s:foreground, "", "")
+	call <SID>X("Conditional", s:purple, "", "")
 	call <SID>X("Repeat", s:red, "", "")
 	call <SID>X("Label", s:blue, "", "")
 	call <SID>X("Structure", s:purple, "", "")
@@ -401,7 +404,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	" Go Highlighting
 	call <SID>X("goDirective", s:purple, "", "")
 	call <SID>X("goDeclaration", s:purple, "", "")
-	call <SID>X("goStatement", s:purple, "", "")
+	call <SID>X("goStatement", s:red, "", "")
 	call <SID>X("goConditional", s:purple, "", "")
 	call <SID>X("goConstants", s:orange, "", "")
 	call <SID>X("goTodo", s:yellow, "", "")

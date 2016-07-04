@@ -102,8 +102,8 @@ au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadRound
 au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadSquare
 au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadBraces
 
-au BufRead,BufNewFile *.l,*.cl,*.lsp,*.lisp,*.rb,*.erb,*.sh,*.ex,*.exs,*.er
-  \ set softtabstop=2 shiftwidth=2
+au BufRead,BufNewFile *.l,*.cl,*.lsp,*.rb,*.erb,*.sh,*.ex,*.exs,*.er,*.c,*.h
+  \ set softtabstop=2 shiftwidth=2 tabstop=2
 
 " tabs for makefiles
 au FileType make setlocal noexpandtab
@@ -403,6 +403,7 @@ hi User5                      ctermfg=10 ctermbg=8 " Comment
 hi User6 term=bold cterm=bold ctermfg=1  ctermbg=8 " WarningMsg
 
 set statusline=
+set statusline +=%1*\ %n\ %*                       "buffer number
 set statusline+=%6*%m%r%*                          " modified, readonly
 set statusline+=\ 
 set statusline+=%5*%{expand('%:h')}/               " relative path to file's directory
