@@ -226,7 +226,7 @@ nnoremap <Leader>t :Tab /=<cr>
 
 " disable Ex mode and help
 noremap <F1> <nop>
-nnoremap Q :bd<cr>
+nnoremap Q :bw<cr>
 
 " reselect after indenting selection
 vnoremap < <gv
@@ -323,6 +323,9 @@ cnoremap X) x
 " switch through windows with tab and shift tab
 nmap <Tab> <C-W>w
 nmap <S-Tab> <C-W>W
+
+" ctrl-p with ctags
+nnoremap <leader>p :CtrlPTag<cr>
 
 "******************************************************************************
 " plugins settins
