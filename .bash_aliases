@@ -3,6 +3,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
+alias http='python -m http.server'
 alias xip='curl icanhazip.com'
 alias reload='source ~/.bashrc'
 alias setssh='eval $(ssh-agent) && ssh-add'

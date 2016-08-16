@@ -24,8 +24,8 @@ set softtabstop=4
 set backspace=eol,start,indent
 set colorcolumn=80
 set sj=-50
-set cursorline
 set title
+" set cursorline
 set autoread
 set completeopt=longest,menuone
 set timeoutlen=500
@@ -102,8 +102,8 @@ au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadRound
 au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadSquare
 au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadBraces
 
-au BufRead,BufNewFile *.l,*.cl,*.lsp,*.rb,*.erb,*.sh,*.ex,*.exs,*.er,*.c,*.h
-  \ set softtabstop=2 shiftwidth=2 tabstop=2
+au BufRead,BufNewFile *.l,*.cl,*.lsp,*.rb,*.erb,*.sh,*.ex,*.exs
+    \ set softtabstop=2 shiftwidth=2 tabstop=2
 
 " tabs for makefiles
 au FileType make setlocal noexpandtab
@@ -345,7 +345,7 @@ endif
 let g:ctrlp_regexp = 1
 
 " space after comment
-let NERDSpaceDelims=1
+let NERDSpaceDelims = 1
 
 " ultisnips
 let g:UltiSnipsExpandTrigger = "<c-@>"
@@ -381,6 +381,9 @@ autocmd BufWinLeave * call clearmatches()
 " go
 let g:go_fmt_command = "goimports"
 
+" buftabline
+let g:buftabline_indicators = 1
+
 " rainbow parentheses
 let g:rbpt_colorpairs = [
     \ ['darkred',     'SeaGreen3'],
@@ -392,7 +395,15 @@ let g:rbpt_colorpairs = [
     \ ['darkred',     'DarkOrchid3'],
     \ ]
 
-" statusbar
+" easytags
+let g:easytags_async = 1
+let g:easytags_syntax_keyword = 'always'
+let g:easytags_always_enabled = 1
+
+"******************************************************************************
+" status bar
+"******************************************************************************
+
 hi clear StatusLine
 hi clear StatusLineNC
 hi StatusLine   term=bold cterm=bold ctermfg=White ctermbg=8
@@ -406,7 +417,7 @@ hi User5                      ctermfg=10 ctermbg=8 " Comment
 hi User6 term=bold cterm=bold ctermfg=1  ctermbg=8 " WarningMsg
 
 set statusline=
-set statusline +=%1*\ %n\ %*                       "buffer number
+set statusline +=%1*\ %n\ %*                       " buffer number
 set statusline+=%6*%m%r%*                          " modified, readonly
 set statusline+=\ 
 set statusline+=%5*%{expand('%:h')}/               " relative path to file's directory
