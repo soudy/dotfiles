@@ -24,10 +24,16 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      yaml
-     dockerfile
      auto-completion
      better-defaults
      shell
+     docker
+     python
+     gtags
+     c-c++
+     erlang
+     xkcd
+     ansible
      shell-scripts
      emacs-lisp
      git
@@ -42,7 +48,8 @@ values."
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      syntax-checking
-     version-control
+     (version-control :variables
+                      version-control-global-margin t)
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -103,8 +110,10 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light)
+   dotspacemacs-themes '(niflheim
+                         spacemacs-dark
+                         spacemacs-light
+                         junio)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -137,7 +146,7 @@ values."
    ;; Emacs commands (M-x).
    ;; By default the command key is `:' so ex-commands are executed like in Vim
    ;; with `:' and Emacs commands are executed with `<leader> :'.
-   dotspacemacs-command-key ";"
+   dotspacemacs-emacs-command-key ";"
    ;; If non nil `Y' is remapped to `y$'. (default t)
    dotspacemacs-remap-Y-to-y$ t
    ;; Name of the default layout (default "Default")
@@ -171,7 +180,7 @@ values."
    dotspacemacs-enable-paste-micro-state nil
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
-   dotspacemacs-which-key-delay 0.3
+   dotspacemacs-which-key-delay 0.2
    ;; Which-key frame position. Possible values are `right', `bottom' and
    ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
    ;; right; if there is insufficient space it displays it at the bottom.
@@ -242,8 +251,6 @@ executes.
  this function is mostly useful for variables that need to be set
 before packages are loaded. if you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (setq tramp-ssh-controlmaster-options
-        "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
   )
 
 (defun evil-custom-keybinds ()
@@ -252,6 +259,11 @@ before packages are loaded. if you are unsure, you should try in setting them in
   (define-key evil-normal-state-map (kbd "^") 'evil-digit-argument-or-evil-beginning-of-line)
 
   (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
+
+  (define-key evil-normal-state-map (kbd ";") 'evil-ex)
+  (define-key evil-normal-state-map (kbd ":") 'evil-repeat-find-char)
+
+  (define-key evil-normal-state-map (kbd "RET") 'evil-ex-nohighlight)
 
   ;; Buffer binds
   (define-key evil-normal-state-map (kbd "X") 'evil-next-buffer)
@@ -274,7 +286,12 @@ you should place your code here."
   (global-fci-mode 1)
   (auto-fill-mode t)
 
+  ;; Also break line at 80 characters
+  (setq-default auto-fill-function 'do-auto-fill)
+
   (evil-custom-keybinds)
+
+  (setq-default go-tab-width 4)
 
   ;; SSH agent setup for magit
   (require 'exec-path-from-shell)
@@ -284,8 +301,20 @@ you should place your code here."
   ;; Enable flycheck
   (global-flycheck-mode)
 
+  (setq-default helm-ag-base-command "/usr/bin/ag --nocolor --nogroup")
+
   ;; Use goimports on save
   (setq gofmt-command "/home/soud/go/bin/goimports")
+
+  ;; 2 indents for shell
+  (defun gker-setup-sh-mode ()
+    (setq sh-basic-offset 2
+          sh-indentation 2))
+  (add-hook 'sh-mode-hook 'gker-setup-sh-mode)
+
+  ;; Org mode export markdown
+  (eval-after-load "org"
+    '(require 'ox-md nil t))
 
   (setq-default global-linum-mode t
                 require-final-newline t
