@@ -1,18 +1,31 @@
 # Floating Windows
 for_window [class="Lxappearance"] floating enable
+for_window [instance="Where's My Luggage"] floating enable
+for_window [class="wml.Main"] floating enable
+for_window [class="Fightinder.Main"] floating enable
+for_window [class="Xmessage"] floating enable
 for_window [class="Arandr"] floating enable
 for_window [class="Nautilus"] floating enable
+for_window [class="Eog"] floating enable
 for_window [class="Gedit"] floating enable
 for_window [class="Filezilla"] floating enable
 for_window [class="Nitrogen"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="Shotwell"] floating enable
+for_window [class="MComix"] floating enable
 for_window [class="Evince"] floating enable
 for_window [class="Gpick"] floating enable
 for_window [class="Pavucontrol"] floating enable
+for_window [class="main.py"] floating enable
+for_window [class="Main.py"] floating enable
+for_window [class="GVim"] floating enable
 
 # 1px Border Windows
 for_window [class=".*"] border pixel 1
+
+# not for albert
+for_window [class="albert"] border pixel 0
+
 
 workspace_auto_back_and_forth yes
 
@@ -20,7 +33,7 @@ workspace_auto_back_and_forth yes
 set $mod Mod4
 
 # Font
-font pango:Ubuntu 9
+font pango:Ubuntu, FontAwesome 9
 
 # Mod+Mouse to move (isn't really needed)
 floating_modifier $mod
@@ -28,31 +41,28 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec termite
 
-# ncmpcpp
-bindsym $mod+c exec termite -e ncmpcpp
-
 # file manager
-bindsym $mod+e exec nautilus
+bindsym $mod+e exec dbus-launch nautilus
 
 # keypress speed
 bindsym $mod+g exec xset r rate 220 65
 
 # program launcher
-bindsym $mod+r exec rofi -show run -terminal termite -font 'Fira Mono 16' -lines 4 -eh 1.5 -width 30 -height 100 -bc "#161616" -bg "#161616" -fg "#cccccc" -hlbg "#191919" -hlfg "#cccccc"
+bindsym $mod+r exec rofi -show run -terminal termite -font 'Fira Mono 26' -lines 4 -eh 1.5 -width 30 -height 100 -bc "#161616" -bg "#161616" -fg "#cccccc" -hlbg "#191919" -hlfg "#cccccc"
 
 # browers
-bindsym $mod+q exec chromium
-bindsym $mod+i exec firefox
+bindsym $mod+i exec google-chrome --force-device-scale-factor=1.75
+bindsym $mod+q exec firefox
 
 # kill focused window
 bindsym $mod+x kill
 
 # monitors
-bindsym $mod+F1 exec /home/soud/.screenlayout/single.sh
-bindsym $mod+F2 exec /home/soud/.screenlayout/dual.sh
+#bindsym $mod+F1 exec /home/soud/.screenlayout/single.sh
+#bindsym $mod+F2 exec /home/soud/.screenlayout/dual.sh
 
 # Start dmenu
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec dmenu_run
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+h focus left
@@ -77,14 +87,18 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # backlight
-# bindsym $mod+Up exec xbacklight +1
-# bindsym $mod+Down exec xbacklight -1
+bindsym $mod+Up exec light -A 7
+bindsym $mod+Down exec light -U 7
 
 # split in horizontal orientation
 bindsym $mod+b split h
 
 # split in vertical orientation
 bindsym $mod+v split v
+
+# emacs
+# bindsym $mod+s exec emacsclient -c
+bindsym $mod+s exec emacs
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
@@ -96,11 +110,22 @@ bindsym $mod+Shift+f floating toggle
 bindsym $mod+space focus mode_toggle
 
 # music
-bindsym Mod1+Down exec amixer -q set Master 1%-
-bindsym XF86AudioLowerVolume exec amixer -q set Master 2%-
-bindsym Mod1+Up exec amixer -q set Master 1%+
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 2%+
-bindsym Mod1+m exec amixer -q set Master playback toggle
+bindsym Mod1+Down exec amixer -D pulse sset Master 2%-
+bindsym Mod1+Up exec amixer -D pulse sset Master 2%+
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+
+
+# Spotify
+bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioStop exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop
+bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+
+# Keyboard brightness
+bindsym XF86KbdBrightnessUp exec kbdlight up
+bindsym XF86KbdBrightnessDown exec kbdlight down
+
+bindsym Mod1+m exec amixer -D pulse sset Master playback toggle
 bindsym Mod1+Control+Up exec mpc toggle
 bindsym Mod1+Control+Down exec mpc stop
 bindsym Mod1+Control+Left exec mpc prev
@@ -108,11 +133,11 @@ bindsym Mod1+Control+Right exec mpc next
 
 # switch to workspace
 bindsym $mod+1 workspace 1:web
-bindsym $mod+2 workspace 2:term
+bindsym $mod+2 workspace 2:editor
 bindsym $mod+3 workspace 3:chat
-bindsym $mod+4 workspace 4:files
-bindsym $mod+5 workspace 5:other
-bindsym $mod+6 workspace 6
+bindsym $mod+4 workspace 4:term
+bindsym $mod+5 workspace 5:files
+bindsym $mod+6 workspace 6:other
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
@@ -120,11 +145,11 @@ bindsym $mod+0 workspace 10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1:web
-bindsym $mod+Shift+2 move container to workspace 2:term
+bindsym $mod+Shift+2 move container to workspace 2:editor
 bindsym $mod+Shift+3 move container to workspace 3:chat
-bindsym $mod+Shift+4 move container to workspace 4:files
-bindsym $mod+Shift+5 move container to workspace 5:other
-bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+4 move container to workspace 4:term
+bindsym $mod+Shift+5 move container to workspace 5:files
+bindsym $mod+Shift+6 move container to workspace 6:other
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
@@ -137,18 +162,20 @@ bindsym $mod+Shift+r restart
 # exit i3
 bindsym $mod+Shift+q exec "i3-msg exit"
 # lock i3
-bindsym Mod1+l exec locki3
+bindsym Mod1+l exec lock
 # screenshot
-bindsym Control+Shift+3 exec imgur-screenshot
+bindsym Control+Shift+3 exec gnome-screenshot -a
 
 # Colors
 # name                  #top    #border #text
-client.focused          #747C84 #F3F4F5 #747C84 #F3F4F5
+client.focused          #747C84 #9B9B9B #747C84 #F3F4F5
 client.unfocused        #747C84 #747C84 #F3F4F5 #747C84
 client.focused_inactive #747C84 #747C84 #F3F4F5 #747C84
 client.urgent           #747C84 #747C84 #F3F4F5 #747C84
 
 exec --no-startup-id nitrogen --restore
+exec --no-startup-id nm-applet
+# exec --no-startup-id "polybar bar &"
 
 # Start i3bar
 bar {
@@ -158,12 +185,12 @@ bar {
     position top
 
     colors {
-        statusline  #CCCCCC
-        background  #292929
+        statusline  #f0f0f0
+        background  #1c1c1c
         #name              #border #bg     #text
-        focused_workspace  #F3F4F5 #747C84 #F3F4F5
-        active_workspace   #747C84 #747C84 #F3F4F5
-        inactive_workspace #747C84 #747C84 #F3F4F5
-        urgent_workspace   #747C84 #747C84 #F3F4F5
+        focused_workspace  #1c1c1c #1c1c1c #ffffff
+        active_workspace   #1c1c1c #1c1c1c #ffffff
+        inactive_workspace #1c1c1c #1c1c1c #c1c1c1
+        urgent_workspace   #1c1c1c #1c1c1c #F3F4F5
     }
 }

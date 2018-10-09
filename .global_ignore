@@ -1,3 +1,7 @@
 tags
 env/
 node_modules/
+.idea/
+*.iml
+target/
+*~

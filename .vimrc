@@ -12,15 +12,15 @@ set smarttab
 set showmatch
 set ruler
 set smartindent
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set number
 set number
 set ttyfast
 set lazyredraw
 set showcmd
-set softtabstop=4
+set softtabstop=2
 set backspace=eol,start,indent
 set colorcolumn=80
 set sj=-50
@@ -70,7 +70,7 @@ set undoreload=10000         " number of lines to save for undo
 " wildmenu
 set wildmenu
 set wildmode=list:longest,full
-set wildignore+=.hg,.git,.svn
+set wildignore+=.hg,*/.git,.svn
 set wildignore+=*.aux,*.out,*.toc
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest
@@ -104,6 +104,9 @@ au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadBraces
 
 au BufRead,BufNewFile *.l,*.cl,*.lsp,*.rb,*.erb,*.sh,*.ex,*.exs
     \ set softtabstop=2 shiftwidth=2 tabstop=2
+
+au BufRead,BufNewFile *.java,*.java.class,*.php
+    \ set softtabstop=4 shiftwidth=4 tabstop=4
 
 " tabs for makefiles
 au FileType make setlocal noexpandtab
@@ -336,7 +339,7 @@ if executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor
 
     " use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+    let g:ctrlp_user_command = 'ag %s -l --path-to-agignore ~/.ignore --nocolor --hidden -g ""'
 
     " ag is fast enough that CtrlP doesn't need to cache
     let g:ctrlp_use_caching = 1

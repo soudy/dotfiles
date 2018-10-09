@@ -1,6 +1,7 @@
 node_modules/
 vendor/
 .vagrant/
+target/
 .bundle/
 .sass-cache/
 .git/

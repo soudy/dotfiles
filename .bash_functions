@@ -30,7 +30,7 @@ function ix {
 
 function venv {
     if [[ ! -d ./env ]]; then
-        virtualenv ./env "$@"
+        virtualenv --python=python3.5 ./env "$@"
     else
         . env/bin/activate "$@"
     fi
@@ -75,6 +75,58 @@ function play {
         --no-playlist -o - | mpv --no-terminal --force-window --cache=256 -
 }
 
-function g {
+function gocd {
     cd ~/go/src/github.com/soudy/"$@"
+}
+
+function g {
+    case $1 in
+        push|pull|fetch)
+            ssh-add -l | grep "The agent has no identities" && ssh-add -t 12h
+            ;;
+    esac
+
+    git "$@"
+}
+
+function setssh {
+    if [[ "$1" == g ]]; then
+        key=~/.ssh/google_compute_engine
+    else
+        key=~/.ssh/id_rsa
+    fi
+
+    ssh-add -t 24h "$key"
+}
+
+function rmnone {
+    docker rmi "$@" $(docker images | grep "^<none>" | awk '{print $3}')
+}
+
+function kns {
+    if [ -z "$1" ]; then
+        echo -e "Usage: kns [context] [namespace]\nExample: kns gke_old development"
+    else
+        kubectl config use-context "$1"
+        kubectl config set-context "$1" --namespace="$2"
+    fi
+}
+
+function rmdockershit {
+    docker rmi $(docker images -aq --filter dangling=true)
+    docker rm -v $(docker ps -a -q -f status=exited)
+}
+
+function gssh {
+    local ip
+    ip=$(gcloud compute instances list | grep "^$1\b" | awk '{print $(NF - 2)}')
+    ssh "$USER@$ip"
+}
+
+function ssh_infra {
+  ssh student@192.168.131.1 -p 22022
+}
+
+function i3_err {
+  DISPLAY=:0 i3-dump-log
 }
