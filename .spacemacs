@@ -33,7 +33,6 @@ values."
    dotspacemacs-configuration-layers
    '(
      typescript
-     sql
      html
      nginx
      ;; ----------------------------------------------------------------
@@ -45,7 +44,6 @@ values."
      ;; auto-completion
      better-defaults
      shell
-     docker
      python
      gtags
      java
@@ -57,33 +55,28 @@ values."
      emacs-lisp
      git
      deft
-     go
+     (go :variables go-tab-width 4)
      ruby
      clojure
      markdown
      elixir
      org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
      spell-checking
      syntax-checking
-     (version-control :variables
-                      version-control-global-margin t))
+     csharp)
+   ;; (version-control :variables
+   ;;                  version-control-global-margin t))
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages
-   '(
-     editorconfig
-     groovy-mode
-     feature-mode
-     xah-math-input
-     nyan-mode
-     ;; aggressive-indent-mode
-     parinfer)
+   dotspacemacs-additional-packages '(editorconfig
+                                      groovy-mode
+                                      feature-mode
+                                      xah-math-input
+                                      nyan-mode
+                                      aggressive-indent)
 
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(spaceline)
@@ -142,7 +135,7 @@ values."
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'.
    ;; (default '(recents projects))
-   dotspacemacs-startup-lists '()
+   dotspacemacs-startup-lists '(projects)
    ;; Number of recent files to show in the startup buffer. Ignored if
    ;; `dotspacemacs-startup-lists' doesn't include `recents'. (default 5)
    dotspacemacs-startup-recent-list-size 5
@@ -152,17 +145,16 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(zenburn
-                         niflheim
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Ubuntu Mono"
-                               :size 28
+   dotspacemacs-default-font '("iosevka"
+                               :size 26
                                :weight normal
                                :width normal
-                               :powerline-scale 1.6)
+                               :powerline-scale 1.0)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -230,7 +222,7 @@ values."
    dotspacemacs-enable-paste-micro-state nil
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
-   dotspacemacs-which-key-delay 0.3
+   dotspacemacs-which-key-delay 0.2
    ;; Which-key frame position. Possible values are `right', `bottom' and
    ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
    ;; right; if there is insufficient space it displays it at the bottom.
@@ -260,6 +252,8 @@ values."
    dotspacemacs-inactive-transparency 90
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
    dotspacemacs-mode-line-unicode-symbols nil
+
+   dotspacemacs-mode-line-theme 'spacemacs
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters the
    ;; point when it reaches the top or bottom of the screen. (default t)
@@ -278,7 +272,7 @@ values."
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
-   dotspacemacs-highlight-delimiters 'all
+   dotspacemacs-highlight-delimiters 'current
    ;; If non nil advises quit functions to keep server open when quitting.
    ;; (default nil)
    dotspacemacs-persistent-server nil
@@ -295,8 +289,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup 'trailing
-   ))
+   dotspacemacs-whitespace-cleanup 'trailing))
 
 (defun dotspacemacs/user-init ()
   "initialization function for user code.
@@ -343,13 +336,19 @@ before packages are loaded. if you are unsure, you should try in setting them in
             '(defaults       ; should be included.
                evil          ; If you use Evil.
                paredit       ; Introduce some paredit commands.
-               smart-tab     ; C-b & C-f jump positions and smart shift with tab & S-tab.
-               smart-yank))) ; Yank behavior depend on mode.
-    (add-hook 'clojure-mode-hook #'parinfer-mode)
-    (add-hook 'emacs-lisp-mode-hook #'parinfer-mode)
-    (add-hook 'common-lisp-mode-hook #'parinfer-mode)
-    (add-hook 'scheme-mode-hook #'parinfer-mode)
-    (add-hook 'lisp-mode-hook #'parinfer-mode)))
+               smart-yank)) ; Yank behavior depend on mode.
+      (add-hook 'clojure-mode-hook #'parinfer-mode)
+      (add-hook 'emacs-lisp-mode-hook #'parinfer-mode)
+      (add-hook 'common-lisp-mode-hook #'parinfer-mode)
+      (add-hook 'scheme-mode-hook #'parinfer-mode)
+      (add-hook 'lisp-mode-hook #'parinfer-mode))))
+
+(defun aggressive-indent-setup ()
+  (add-hook 'clojure-mode-hook #'aggressive-indent-mode)
+  (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
+  (add-hook 'common-lisp-mode-hook #'aggressive-indent-mode)
+  (add-hook 'scheme-mode-hook #'aggressive-indent-mode)
+  (add-hook 'lisp-mode-hook #'aggressive-indent-mode))
 
 (defun dotspacemacs/user-config ()
   "configuration function for user code.
@@ -364,10 +363,16 @@ you should place your code here."
   (auto-fill-mode t)
 
   ;; Scratch buffer as startup page
-  ;; (kill-buffer "*spacemacs*")
+  (kill-buffer "*spacemacs*")
 
-  ;; Projectile project folder
-  (setq projectile-project-search-path '("~/tech/" "~/nummorum/", "~/go/src"))
+  ;; Projectile
+  (setq projectile-project-search-path '("~/tech/" "~/nummorum/"))
+  (setq-default helm-ag-base-command "/usr/bin/ag --nocolor --nogroup --path-to-agignore=/home/soud/.agignore")
+  (setq projectile-globally-ignored-directories '("vendor"))
+
+
+  ;; Use goimports on save
+  (setq gofmt-command "/home/soud/go/bin/goimports")
 
   ;; Also break line at 80 characters
   (setq-default auto-fill-function 'do-auto-fill)
@@ -380,7 +385,19 @@ you should place your code here."
 
   (evil-custom-keybinds)
 
-  (parinfer-setup)
+  ;;(parinfer-setup)
+  (aggressive-indent-setup)
+
+  ;; SSH agent setup for magit
+  (require 'exec-path-from-shell)
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-env "SSH_AGENT_PID")
+  (exec-path-from-shell-copy-env "BROWSER")
+  (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
+  (exec-path-from-shell-copy-env "PATH")
+  (exec-path-from-shell-copy-env "GOPATH")
+  (exec-path-from-shell-copy-env "GOROOT")
+  (exec-path-from-shell-copy-env "GOBIN")
 
   ;; JavaScript indent
   (setq-default js2-basic-offset 2)
@@ -388,23 +405,14 @@ you should place your code here."
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
 
-  ;; SSH agent setup for magit
-  (require 'exec-path-from-shell)
-  (setq exec-path-from-shell-variables '("PATH" "GOPATH" "GOROOT" "GOBIN"))
-  (exec-path-from-shell-copy-env "SSH_AGENT_PID")
-  (exec-path-from-shell-copy-env "BROWSER")
-  (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
+  ;; Use C# mode for Q#
+  (add-to-list 'auto-mode-alist '("\\.qs" . csharp-mode))
 
   ;; Turn math input mode on globally
   (global-xah-math-input-mode 1)
 
   ;; Enable flycheck
-  (global-flycheck-mode)
-
-  (setq-default helm-ag-base-command "/usr/bin/ag --nocolor --nogroup --path-to-agignore /home/soud/.ignore")
-
-  ;; Use goimports on save
-  (setq gofmt-command "/home/soud/go/bin/goimports")
+  ;; (global-flycheck-mode)
 
   ;; 2 indents for shell
   (defun gker-setup-sh-mode ()
@@ -415,9 +423,6 @@ you should place your code here."
   ;; Org mode export markdown
   (eval-after-load "org"
     '(require 'ox-md nil t))
-
-  ;; (global-aggressive-indent-mode 1)
-  ;; (add-to-list 'aggressive-indent-excluded-modes '(html-mode web-mode))
 
   (setq-default global-linum-mode t
                 require-final-newline t
@@ -435,7 +440,7 @@ you should place your code here."
  '(evil-want-Y-yank-to-eol t)
  '(package-selected-packages
    (quote
-    (parinfer tide typescript-mode clj-refactor inflections edn paredit seq peg cider sesman queue clojure-mode winum unfill flycheck-credo ob-elixir minitest js2-refactor yasnippet multiple-cursors insert-shebang hide-comnt go-guru editorconfig yapfify yaml-mode xterm-color ws-butler window-numbering which-key web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline smeargle shell-pop rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rake rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode paradox orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file niflheim-theme neotree mwim multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint js-doc jinja2-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-ag google-translate golden-ratio go-eldoc gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md ggtags flycheck-pos-tip flycheck-mix flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erlang elisp-slime-nav dumb-jump dockerfile-mode docker disaster diff-hl deft define-word cython-mode column-enforce-mode coffee-mode cmake-mode clean-aindent-mode clang-format chruby bundler bracketed-paste auto-highlight-symbol auto-compile ansible-doc ansible anaconda-mode alchemist aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+    (auctex-latexmk auctex omnisharp auto-complete csharp-mode lispy zoutline swiper ivy flycheck-gometalinter parinfer tide typescript-mode clj-refactor inflections edn paredit seq peg cider sesman queue clojure-mode winum unfill flycheck-credo ob-elixir minitest js2-refactor yasnippet multiple-cursors insert-shebang hide-comnt go-guru editorconfig yapfify yaml-mode xterm-color ws-butler window-numbering which-key web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline smeargle shell-pop rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restart-emacs rbenv rake rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode paradox orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file niflheim-theme neotree mwim multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint js-doc jinja2-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-ag google-translate golden-ratio go-eldoc gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md ggtags flycheck-pos-tip flycheck-mix flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erlang elisp-slime-nav dumb-jump dockerfile-mode docker disaster diff-hl deft define-word cython-mode column-enforce-mode coffee-mode cmake-mode clean-aindent-mode clang-format chruby bundler bracketed-paste auto-highlight-symbol auto-compile ansible-doc ansible anaconda-mode alchemist aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
  '(safe-local-variable-values
    (quote
     ((encoding . utf-8)

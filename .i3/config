@@ -1,6 +1,8 @@
 # Floating Windows
 for_window [class="Lxappearance"] floating enable
 for_window [instance="Where's My Luggage"] floating enable
+for_window [instance="Mayavi Scene 1"] floating enable
+for_window [class="Mayavi Scene 1"] floating enable
 for_window [class="wml.Main"] floating enable
 for_window [class="Fightinder.Main"] floating enable
 for_window [class="Xmessage"] floating enable
@@ -11,6 +13,7 @@ for_window [class="Gedit"] floating enable
 for_window [class="Filezilla"] floating enable
 for_window [class="Nitrogen"] floating enable
 for_window [class="mpv"] floating enable
+for_window [class="vlc"] floating enable
 for_window [class="Shotwell"] floating enable
 for_window [class="MComix"] floating enable
 for_window [class="Evince"] floating enable
@@ -19,6 +22,9 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="main.py"] floating enable
 for_window [class="Main.py"] floating enable
 for_window [class="GVim"] floating enable
+for_window [class="geeqie"] floating enable
+for_window [class="Geeqie"] floating enable
+for_window [class="nl-hva-ict-ss-pathfinding-pathfinding-Main"] floating enable
 
 # 1px Border Windows
 for_window [class=".*"] border pixel 1
@@ -39,7 +45,7 @@ font pango:Ubuntu, FontAwesome 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec alacritty
 
 # file manager
 bindsym $mod+e exec dbus-launch nautilus
@@ -48,11 +54,11 @@ bindsym $mod+e exec dbus-launch nautilus
 bindsym $mod+g exec xset r rate 220 65
 
 # program launcher
-bindsym $mod+r exec rofi -show run -terminal termite -font 'Fira Mono 26' -lines 4 -eh 1.5 -width 30 -height 100 -bc "#161616" -bg "#161616" -fg "#cccccc" -hlbg "#191919" -hlfg "#cccccc"
+bindsym $mod+r exec rofi -show run -terminal alacritty -font 'Fira Mono 26' -lines 4 -eh 1.5 -width 30 -height 100 -bc "#161616" -bg "#161616" -fg "#cccccc" -hlbg "#191919" -hlfg "#cccccc"
 
 # browers
-bindsym $mod+i exec google-chrome --force-device-scale-factor=1.75
-bindsym $mod+q exec firefox
+bindsym $mod+i exec dbus-launch google-chrome --force-device-scale-factor=1.75
+bindsym $mod+q exec dbus-launch firefox
 
 # kill focused window
 bindsym $mod+x kill
@@ -97,8 +103,8 @@ bindsym $mod+b split h
 bindsym $mod+v split v
 
 # emacs
-# bindsym $mod+s exec emacsclient -c
-bindsym $mod+s exec emacs
+bindsym $mod+s exec emacsclient -c
+# bindsym $mod+s exec emacs
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
@@ -132,28 +138,28 @@ bindsym Mod1+Control+Left exec mpc prev
 bindsym Mod1+Control+Right exec mpc next
 
 # switch to workspace
-bindsym $mod+1 workspace 1:web
-bindsym $mod+2 workspace 2:editor
-bindsym $mod+3 workspace 3:chat
-bindsym $mod+4 workspace 4:term
-bindsym $mod+5 workspace 5:files
-bindsym $mod+6 workspace 6:other
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+1 workspace 1: 𝛼
+bindsym $mod+2 workspace 2: 𝛽
+bindsym $mod+3 workspace 3: 𝛾
+bindsym $mod+4 workspace 4: 𝛿
+bindsym $mod+5 workspace 5: 𝜀
+bindsym $mod+6 workspace 6: 𝜁
+bindsym $mod+7 workspace 7: 𝜙
+bindsym $mod+8 workspace 8: 𝜃
+bindsym $mod+9 workspace 9: 𝜆
+bindsym $mod+0 workspace 10: 𝛺
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1:web
-bindsym $mod+Shift+2 move container to workspace 2:editor
-bindsym $mod+Shift+3 move container to workspace 3:chat
-bindsym $mod+Shift+4 move container to workspace 4:term
-bindsym $mod+Shift+5 move container to workspace 5:files
-bindsym $mod+Shift+6 move container to workspace 6:other
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+1 move container to workspace 1: 𝛼
+bindsym $mod+Shift+2 move container to workspace 2: 𝛽
+bindsym $mod+Shift+3 move container to workspace 3: 𝛾
+bindsym $mod+Shift+4 move container to workspace 4: 𝛿
+bindsym $mod+Shift+5 move container to workspace 5: 𝜀
+bindsym $mod+Shift+6 move container to workspace 6: 𝜁
+bindsym $mod+Shift+7 move container to workspace 7: 𝜙
+bindsym $mod+Shift+8 move container to workspace 8: 𝜃
+bindsym $mod+Shift+9 move container to workspace 9: 𝜆
+bindsym $mod+Shift+0 move container to workspace 10: 𝛺
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -174,8 +180,7 @@ client.focused_inactive #747C84 #747C84 #F3F4F5 #747C84
 client.urgent           #747C84 #747C84 #F3F4F5 #747C84
 
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id nm-applet
-# exec --no-startup-id "polybar bar &"
+#exec --no-startup-id "polybar bar &"
 
 # Start i3bar
 bar {
@@ -186,11 +191,11 @@ bar {
 
     colors {
         statusline  #f0f0f0
-        background  #1c1c1c
+        background  #262626
         #name              #border #bg     #text
-        focused_workspace  #1c1c1c #1c1c1c #ffffff
-        active_workspace   #1c1c1c #1c1c1c #ffffff
-        inactive_workspace #1c1c1c #1c1c1c #c1c1c1
-        urgent_workspace   #1c1c1c #1c1c1c #F3F4F5
+        focused_workspace  #a3a3a3 #262626 #ffffff
+        active_workspace   #262626 #262626 #ffffff
+        inactive_workspace #262626 #262626 #c1c1c1
+        urgent_workspace   #262626 #262626 #F3F4F5
     }
 }
