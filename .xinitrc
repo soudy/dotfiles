@@ -1,15 +1,6 @@
-#!/bin/sh
+#! /bin/sh
 
-if [ -d /etc/X11/xinit/xinitrc.d ]; then
-  for f in /etc/X11/xinit/xinitrc.d/*; do
-    [ -x "$f" ] && . "$f"
-  done
-  unset f
-fi
-
-[ -f ~/.Xresources ] && xrdb -merge ~/.Xresources
-[ -f /etc/xprofile ] && . /etc/xprofile
-[ -f ~/.xprofile ] && . ~/.xprofile
+# . /etc/X11/Xsession
 
 xset +fp /usr/share/fonts/local &
 xset fp rehash &
@@ -18,14 +9,26 @@ xset r rate 220 65 &
 xset m 3 1 &
 xsetroot -cursor_name left_ptr &
 
-dunst &
-compton &
-mpd &
-nm-applet &
-# hsetroot -center ~/Pictures/coldflow.jpg &
-# hsetroot -tile ~/Pictures/pattern_154.gif &
-# hsetroot -fill ~/Pictures/beach_stones.jpg &
-# sxhkd -f 100 &
+export $(dbus-launch)
 
-exec i3
+compton &
+#eval `dbus-launch --auto-syntax` nm-applet &
+nm-applet &
+fluxgui &
+
+xrandr --dpi 200
+xrdb -merge ~/.Xresources
+
+synclient HorizTwoFingerScroll=1
+synclient RightButtonAreaLeft=3068
+synclient RightButtonAreaRight=0
+synclient RightButtonAreaTop=4326
+synclient RightButtonAreaBottom=0
+synclient MaxTapTime=0
+
+
+export GDK_SCALE=2
+export GDK_DPI_SCALE=.5
+
+exec i3 --shmlog-size=26214400
 # exec awesome
