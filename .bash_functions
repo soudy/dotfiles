@@ -49,7 +49,7 @@ function man {
 }
 
 function git_branch {
-    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+    command git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
 function n {
@@ -86,14 +86,14 @@ function g {
             ;;
     esac
 
-    git "$@"
+    command git "$@"
 }
 
 function setssh {
     if [[ "$1" == g ]]; then
         key=~/.ssh/google_compute_engine
     else
-        key=~/.ssh/id_rsa
+        key=~/.ssh/id_ed25519
     fi
 
     ssh-add -t 24h "$key"
@@ -129,4 +129,8 @@ function ssh_infra {
 
 function i3_err {
   DISPLAY=:0 i3-dump-log
+}
+
+function reload-network-driver {
+   sudo rmmod brcmfmac && sudo modprobe brcmfmac
 }
