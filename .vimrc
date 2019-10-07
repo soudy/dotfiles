@@ -1,8 +1,8 @@
 "******************************************************************************
 " basic settings
 "******************************************************************************
-syntax enable
 filetype plugin indent on
+syntax on
 
 set t_Co=256
 set nocompatible
@@ -89,8 +89,10 @@ set wildignore+=/node_modules,/.vagrant,/vendor
 " enable pathogen
 call pathogen#infect()
 
-colorscheme tnight
 let &titleold=getcwd()
+let g:gruvbox_contrast_dark = 'soft'
+set background=dark
+colorscheme gruvbox
 
 "******************************************************************************
 " auto commands
@@ -102,10 +104,12 @@ au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadRound
 au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadSquare
 au Syntax *.l,*.cl,*.lsp,*.lisp   RainbowParenthesesLoadBraces
 
+au BufRead,BufNewFile *.qs set filetype=cs
+
 au BufRead,BufNewFile *.l,*.cl,*.lsp,*.rb,*.erb,*.sh,*.ex,*.exs
     \ set softtabstop=2 shiftwidth=2 tabstop=2
 
-au BufRead,BufNewFile *.java,*.java.class,*.php
+au BufRead,BufNewFile *.java,*.java.class,*.php,*.qs,*.h,*.c,*.cpp
     \ set softtabstop=4 shiftwidth=4 tabstop=4
 
 " tabs for makefiles
@@ -123,6 +127,12 @@ au BufReadPost *
             \ if line("'\"") > 0 && line("'\"") <= line("$") |
             \   exe "normal! g`\"" |
             \ endif
+
+" wordwrap tex files
+augroup WrapLineInTeXFile
+  autocmd!
+  autocmd FileType tex setlocal wrap
+augroup END
 
 " highlighting
 au BufNewFile,BufRead *.md set ft=markdown spell
@@ -375,11 +385,11 @@ let g:multi_cursor_exit_from_visual_mode = 0
 let g:multi_cursor_exit_from_insert_mode = 0
 
 " highlight trailing whitespace
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
+" match ExtraWhitespace /\s\+$/
+" autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+" autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+" autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+" autocmd BufWinLeave * call clearmatches()
 
 " go
 let g:go_fmt_command = "goimports"
